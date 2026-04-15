@@ -1,0 +1,845 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Career Dashboard - UDCOE</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+   
+  <style>
+    :root {
+      --primary: #2E7D32;
+      --secondary: #424242;
+      --accent: #4CAF50;
+      --success: #4caf50;
+      --warning: #ff9800;
+      --danger: #f44336;
+      --light: #f8f9fa;
+      --dark: #212121;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f7fa;
+      color: var(--secondary);
+      padding-top: 20px;
+    }
+    
+    .dashboard-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .profile-card {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      padding: 25px;
+      margin-bottom: 25px;
+      border-left: 4px solid var(--primary);
+    }
+    
+    .disability-profile {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      padding: 25px;
+      margin-bottom: 25px;
+    }
+    
+    .disability-item {
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 10px;
+      background: #f8f9fa;
+      border-left: 4px solid var(--primary);
+    }
+    
+    .severity-badge {
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+    
+    .severity-low {
+      background-color: #e8f5e9;
+      color: #2e7d32;
+    }
+    
+    .severity-moderate {
+      background-color: #fff8e1;
+      color: #ed6c02;
+    }
+    
+    .severity-high {
+      background-color: #ffebee;
+      color: #c62828;
+    }
+    
+    .career-card {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      padding: 20px;
+      margin-bottom: 20px;
+      transition: all 0.3s ease;
+      height: 100%;
+      border: 1px solid #e0e0e0;
+    }
+    
+    .career-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      border-color: var(--primary);
+    }
+    
+    .domain-header {
+      background: var(--primary);
+      color: white;
+      padding: 15px;
+      border-radius: 10px 10px 0 0;
+      margin-bottom: 15px;
+    }
+    
+    .scheme-card {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      padding: 20px;
+      margin-bottom: 20px;
+      border-left: 4px solid var(--success);
+    }
+    
+    .action-item {
+      background: white;
+      border-radius: 12px;
+      padding: 15px;
+      margin-bottom: 15px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      border-left: 4px solid var(--accent);
+      transition: all 0.2s ease;
+    }
+    
+    .action-item:hover {
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    
+    .progress-container {
+      margin: 25px 0;
+    }
+    
+    .progress-label {
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    
+    .progress-bar {
+      height: 10px;
+      border-radius: 5px;
+      background-color: #e0e0e0;
+    }
+    
+    .progress-fill {
+      height: 100%;
+      border-radius: 5px;
+      background-color: var(--primary);
+      transition: width 0.3s ease;
+    }
+    
+    .domain-icon {
+      background: rgba(46, 125, 50, 0.1);
+      width: 50px;
+      height: 50px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 15px;
+    }
+    
+    .domain-icon i {
+      font-size: 1.8rem;
+      color: var(--primary);
+    }
+    
+    .domain-card {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      padding: 25px;
+      margin-bottom: 20px;
+      text-align: center;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .domain-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    }
+    
+    .export-btn {
+      background: var(--accent);
+      color: white;
+      padding: 12px 25px;
+      font-weight: 600;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+    }
+    
+    .export-btn:hover {
+      background: #388E3C;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(46, 125, 50, 0.3);
+    }
+    
+    .accessibility-bar {
+      background: var(--dark);
+      color: white;
+      padding: 12px 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .accessibility-option {
+      margin: 0 8px;
+      cursor: pointer;
+      padding: 5px 12px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.1);
+      transition: all 0.2s;
+    }
+    
+    .accessibility-option:hover {
+      background: rgba(255,255,255,0.2);
+    }
+    
+    @media (max-width: 768px) {
+      .dashboard-container {
+        padding: 0 15px;
+      }
+      
+      .accessibility-bar {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container dashboard-container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h1 class="text-primary mb-0"><i class="fas fa-tachometer-alt me-2"></i>My Career Dashboard</h1>
+      <div class="d-flex gap-2">
+        <button class="btn btn-outline-primary" onclick="location.href='assessment.html'">
+          <i class="🔄 me-1"></i> Retake Assessment
+        </button>
+        <button class="btn btn-outline-secondary" id="download-pdf">
+          <i class="fas fa-download me-1"></i> Export Plan
+        </button>
+      </div>
+    </div>
+    
+    <div class="accessibility-bar">
+      <div class="d-flex gap-3">
+        <span class="accessibility-option" id="text-size-increase">
+          <i class="🅰️"></i> A+
+        </span>
+        <span class="accessibility-option" id="text-size-decrease">
+          <i class="🅰️"></i> A-
+        </span>
+        <span class="accessibility-option" id="high-contrast">
+          <i class="🌓"></i> High Contrast
+        </span>
+        <span class="accessibility-option" id="screen-reader">
+          <i class="🎤"></i> Voice Navigation
+        </span>
+      </div>
+      <div class="language-selector">
+        <select class="form-select" style="width: auto; background: rgba(255,255,255,0.1); color: white; border: none;">
+          <option value="en">English</option>
+          <option value="hi">Hindi</option>
+          <option value="mr">Marathi</option>
+          <option value="ta">Tamil</option>
+          <option value="te">Telugu</option>
+        </select>
+      </div>
+    </div>
+    
+    <div class="profile-card">
+      <div class="row align-items-center">
+        <div class="col-md-2 text-center mb-3 mb-md-0">
+          <div class="bg-primary text-white rounded-circle d-inline-block p-3" style="width: 80px; height: 80px;">
+            <i class="fas fa-user fa-2x"></i>
+          </div>
+        </div>
+        <div class="col-md-10">
+          <h3 class="mb-1">Welcome, User</h3>
+          <p class="text-muted mb-2">Your personalized career pathway based on assessment results</p>
+          <div class="d-flex flex-wrap gap-2">
+            <span class="badge bg-primary"><i class="fas fa-calendar-alt me-1"></i> Assessment Date: <span id="assessment-date">January 15, 2026</span></span>
+            <span class="badge bg-info"><i class="🧑‍🎓 me-1"></i> Education Level: Graduate</span>
+            <span class="badge bg-success"><i class="fas fa-map-marker-alt me-1"></i> Location: Maharashtra</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="disability-profile">
+          <h3 class="text-primary mb-4"><i class="fas fa-medical me-2"></i>Disability Profile</h3>
+          
+          <div class="progress-container">
+            <div class="progress-label">Overall Disability Impact</div>
+            <div class="progress-bar">
+              <div class="progress-fill" id="overall-progress" style="width: 45%;"></div>
+            </div>
+            <small class="text-muted mt-1">Based on your assessment responses</small>
+          </div>
+          
+          <div id="disability-list">
+            <!-- Disability items will be dynamically loaded here -->
+          </div>
+        </div>
+        
+        <h3 class="text-primary mb-4 mt-4"><i class="💼 me-2"></i>Recommended Career Paths</h3>
+        
+        <div id="career-recommendations">
+          <!-- Career recommendations will be dynamically loaded here -->
+        </div>
+      </div>
+      
+      <div class="col-lg-4">
+        <div class="scheme-card">
+          <h4 class="text-success mb-3"><i class="fas fa-hand-holding-usd me-2"></i>Available Government Schemes</h4>
+          
+          <div id="scheme-list">
+            <!-- Scheme list will be dynamically loaded here -->
+          </div>
+          
+          <div class="mt-3 p-3 bg-light rounded">
+            <h6 class="mb-2">Need Help Applying?</h6>
+            <p class="mb-0 small">Contact your nearest <strong>Disability Rehabilitation Center (DDRC)</strong> for assistance with applications and documentation.</p>
+          </div>
+        </div>
+        
+        <div class="card mb-4">
+          <div class="card-header bg-primary text-white">
+            <h5 class="mb-0"><i class="fas fa-tasks me-2"></i>Action Plan</h5>
+          </div>
+          <div class="card-body">
+            <div id="action-items">
+              <!-- Action items will be dynamically loaded here -->
+            </div>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-header bg-info text-white">
+            <h5 class="mb-0"><i class="fas fa-lightbulb me-2"></i>Tips & Resources</h5>
+          </div>
+          <div class="card-body">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <i class="fas fa-bullseye text-primary me-2"></i>
+                <strong>Start small:</strong> Begin with one career path that interests you most
+              </li>
+              <li class="list-group-item">
+                <i class="fas fa-users text-primary me-2"></i>
+                <strong>Build support:</strong> Connect with mentors in your chosen field
+              </li>
+              <li class="list-group-item">
+                <i class="fas fa-certificate text-primary me-2"></i>
+                <strong>Upskill gradually:</strong> Focus on one skill at a time
+              </li>
+              <li class="list-group-item">
+                <i class="fas fa-handshake text-primary me-2"></i>
+                <strong>Leverage networks:</strong> Join disability-focused professional groups
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="text-center my-4">
+      <button class="export-btn" id="export-full-plan">
+        <i class="fas fa-file-export me-2"></i> Export Full Career Plan (PDF)
+      </button>
+    </div>
+    
+    <footer class="mt-5 py-4 border-top text-center text-muted">
+      <p class="mb-0">Universal Disability Career & Opportunity Engine (UDCOE)</p>
+      <p class="mb-0">© 2026 An initiative under the Rights of Persons with Disabilities Act, 2016</p>
+    </footer>
+  </div>
+  
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <script>
+    // Sample data for demonstration (in production this would come from assessment results)
+    let assessmentData = {
+      disabilities: [
+        {
+          name: "Specific Learning Disability",
+          severity: "Moderate",
+          percent: 55,
+          description: "Difficulty in reading, writing, or math despite normal intelligence"
+        },
+        {
+          name: "Mental Illness",
+          severity: "Low",
+          percent: 35,
+          description: "Conditions like depression, anxiety, bipolar disorder"
+        },
+        {
+          name: "Speech and Language Disability",
+          severity: "Low",
+          percent: 25,
+          description: "Difficulty speaking or understanding language"
+        }
+      ],
+      education: "Graduate",
+      location: "Maharashtra",
+      careerRecommendations: {
+        content: [
+          {
+            title: "Content Writer",
+            description: "Create written content for websites, blogs, and publications with assistive technology support",
+            domain: "Content Creation",
+            income: "₹25,000-45,000/month",
+            compatibility: 95,
+            path: "freelance"
+          },
+          {
+            title: "Script Writer",
+            description: "Write scripts for films, videos, and audio content with flexible working conditions",
+            domain: "Entertainment & Media",
+            income: "₹30,000-60,000/month",
+            compatibility: 90,
+            path: "freelance"
+          }
+        ],
+        tech: [
+          {
+            title: "Voice UX Designer",
+            description: "Design voice-based interfaces for apps and devices with accessibility focus",
+            domain: "Technology",
+            income: "₹40,000-75,000/month",
+            compatibility: 85,
+            path: "full_time"
+          },
+          {
+            title: "Content Strategist",
+            description: "Plan and execute content strategies with tools that support different learning styles",
+            domain: "Technology",
+            income: "₹35,000-65,000/month",
+            compatibility: 80,
+            path: "full_time"
+          }
+        ],
+        education: [
+          {
+            title: "Online Course Creator",
+            description: "Develop and sell online courses with multimedia accessibility features",
+            domain: "Education",
+            income: "₹30,000-80,000/month",
+            compatibility: 95,
+            path: "business"
+          },
+          {
+            title: "Special Education Assistant",
+            description: "Support teachers in inclusive classrooms with understanding of learning differences",
+            domain: "Education",
+            income: "₹20,000-35,000/month",
+            compatibility: 85,
+            path: "full_time"
+          }
+        ]
+      },
+      schemes: [
+        {
+          name: "ADIP Scheme",
+          description: "Free assistive devices including text-to-speech software, screen readers",
+          eligibility: "40%+ disability, income below ₹24,000/year",
+          benefit: "100% cost coverage for devices up to ₹15,000"
+        },
+        {
+          name: "Post-Matric Scholarship",
+          description: "Financial assistance for higher education",
+          eligibility: "Student with disability, 40%+ disability",
+          benefit: "₹1,200/month for hostellers, ₹700/month for day scholars"
+        },
+        {
+          name: "Skill India Digital Hub",
+          description: "Free skill development programs with accessibility features",
+          eligibility: "Students and job seekers with disabilities",
+          benefit: "Free certification courses in digital skills"
+        }
+      ],
+      actionPlan: [
+        "Get UDID (Unique Disability ID) card from nearest DEPwD office",
+        "Apply for ADIP scheme for assistive technology devices",
+        "Enroll in a free content writing course on Skill India Digital Platform",
+        "Create portfolio website showcasing writing samples",
+        "Connect with online communities for writers with learning disabilities"
+      ],
+      assessmentDate: new Date().toLocaleDateString('en-GB')
+    };
+    
+    // Initialize dashboard
+    function initDashboard() {
+      // Set assessment date
+      document.getElementById('assessment-date').textContent = assessmentData.assessmentDate;
+      
+      // Load disability profile
+      loadDisabilityProfile();
+      
+      // Load career recommendations
+      loadCareerRecommendations();
+      
+      // Load government schemes
+      loadGovernmentSchemes();
+      
+      // Load action items
+      loadActionItems();
+      
+      // Setup accessibility controls
+      setupAccessibilityControls();
+      
+      // Setup export functionality
+      setupExportFunctionality();
+    }
+    
+    // Load disability profile
+    function loadDisabilityProfile() {
+      const container = document.getElementById('disability-list');
+      if (!container) return;
+      
+      // Calculate overall progress
+      const overallPercent = assessmentData.disabilities.reduce((sum, dis) => sum + dis.percent, 0) / assessmentData.disabilities.length;
+      document.getElementById('overall-progress').style.width = `${overallPercent}%`;
+      
+      let html = '';
+      
+      assessmentData.disabilities.forEach(dis => {
+        const severityClass = dis.severity.toLowerCase();
+        html += `
+          <div class="disability-item">
+            <div class="d-flex justify-content-between align-items-start">
+              <div>
+                <h5 class="mb-1">${dis.name}</h5>
+                <p class="text-muted small mb-2">${dis.description}</p>
+                <span class="severity-badge severity-${severityClass}">${dis.severity} Severity (${dis.percent}%)</span>
+              </div>
+              <div class="text-end">
+                <div class="progress" style="height: 8px; width: 100px;">
+                  <div class="progress-bar bg-${severityClass === 'low' ? 'success' : severityClass === 'moderate' ? 'warning' : 'danger'}" 
+                       role="progressbar" style="width: ${dis.percent}%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+      
+      container.innerHTML = html;
+    }
+    
+    // Load career recommendations
+    function loadCareerRecommendations() {
+      const container = document.getElementById('career-recommendations');
+      if (!container) return;
+      
+      let html = '';
+      
+      // Content Creation careers
+      html += `
+        <div class="domain-card mb-4">
+          <div class="domain-header bg-info">
+            <h4 class="mb-0 text-white"><i class=" ✒️ me-2"></i>Content Creation</h4>
+          </div>
+          <div class="p-3">
+      `;
+      
+      assessmentData.careerRecommendations.content.forEach(career => {
+        html += createCareerCard(career, 'content');
+      });
+      
+      html += `
+          </div>
+        </div>
+      `;
+      
+      // Technology careers
+      html += `
+        <div class="domain-card mb-4">
+          <div class="domain-header bg-primary">
+            <h4 class="mb-0 text-white"><i class="💻 me-2"></i>Technology</h4>
+          </div>
+          <div class="p-3">
+      `;
+      
+      assessmentData.careerRecommendations.tech.forEach(career => {
+        html += createCareerCard(career, 'tech');
+      });
+      
+      html += `
+          </div>
+        </div>
+      `;
+      
+      // Education careers
+      html += `
+        <div class="domain-card">
+          <div class="domain-header bg-success">
+            <h4 class="mb-0 text-white"><i class="🎓 me-2"></i>Education</h4>
+          </div>
+          <div class="p-3">
+      `;
+      
+      assessmentData.careerRecommendations.education.forEach(career => {
+        html += createCareerCard(career, 'education');
+      });
+      
+      html += `
+          </div>
+        </div>
+      `;
+      
+      container.innerHTML = html;
+    }
+    
+    // Create career card HTML
+    function createCareerCard(career, domain) {
+      return `
+        <div class="career-card" onclick="viewCareerDetails('${domain}', '${career.title.replace(/'/g, "\\'")}')">
+          <div class="d-flex justify-content-between align-items-start">
+            <div>
+              <h5 class="mb-1">${career.title}</h5>
+              <p class="text-muted small mb-2">${career.description}</p>
+              <div class="d-flex flex-wrap gap-2 mt-2">
+                <span class="badge bg-primary">${career.domain}</span>
+                <span class="badge bg-info">${career.income}</span>
+                <span class="badge bg-success">${career.path === 'freelance' ? 'Freelance' : career.path === 'full_time' ? 'Full-time' : 'Business'}</span>
+              </div>
+            </div>
+            <div class="text-end">
+              <div class="mb-2">
+                <i class="📈 me-1"></i> ${career.compatibility}% match
+              </div>
+              <div class="progress" style="height: 6px; width: 60px;">
+                <div class="progress-bar bg-success" role="progressbar" style="width: ${career.compatibility}%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+    
+    // Load government schemes
+    function loadGovernmentSchemes() {
+      const container = document.getElementById('scheme-list');
+      if (!container) return;
+      
+      let html = '';
+      
+      assessmentData.schemes.forEach((scheme, index) => {
+        html += `
+          <div class="mb-3 p-3 border rounded">
+            <div class="d-flex">
+              <div class="me-3 mt-1">
+                <span class="badge rounded-pill bg-success">${index + 1}</span>
+              </div>
+              <div>
+                <h5 class="mb-1">${scheme.name}</h5>
+                <p class="text-muted mb-2">${scheme.description}</p>
+                <div class="d-flex flex-wrap gap-2">
+                  <span class="badge bg-light text-dark border"><i class="fas fa-user-tag me-1"></i>${scheme.eligibility}</span>
+                  <span class="badge bg-success"><i class="fas fa-rupee-sign me-1"></i>${scheme.benefit}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+      
+      html += `
+        <div class="mt-3 text-center">
+          <a href="https://divyangjan.gov.in" target="_blank" class="btn btn-sm btn-outline-primary me-2">
+            <i class="🌐 me-1"></i> National Portal
+          </a>
+          <a href="https://swavlambancard.gov.in" target="_blank" class="btn btn-sm btn-outline-success">
+            <i class="fas fa-id-card me-1"></i> Apply for UDID
+          </a>
+        </div>
+      `;
+      
+      container.innerHTML = html;
+    }
+    
+    // Load action items
+    function loadActionItems() {
+      const container = document.getElementById('action-items');
+      if (!container) return;
+      
+      let html = '';
+      
+      assessmentData.actionPlan.forEach((item, index) => {
+        html += `
+          <div class="action-item">
+            <div class="d-flex">
+              <div class="me-3 mt-1">
+                <div class="bg-primary text-white rounded-circle d-inline-block p-2" style="width: 28px; height: 28px; font-size: 0.8rem;">
+                  ${index + 1}
+                </div>
+              </div>
+              <div>
+                <p class="mb-1">${item}</p>
+                <div class="progress" style="height: 4px;">
+                  <div class="progress-bar bg-primary" role="progressbar" style="width: ${20 * (index + 1)}%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+      
+      container.innerHTML = html;
+    }
+    
+    // View career details
+    function viewCareerDetails(domain, careerTitle) {
+      // In a real application, this would navigate to a detailed career page
+      // For now, just show an alert with the information
+      alert(`You clicked on: ${careerTitle} in ${domain} domain\n\nThis would take you to a detailed career roadmap with step-by-step guidance, salary information, and training requirements.`);
+    }
+    
+    // Setup accessibility controls
+    function setupAccessibilityControls() {
+      document.getElementById('text-size-increase').addEventListener('click', function() {
+        document.body.style.fontSize = '1.15rem';
+        localStorage.setItem('fontSize', '1.15rem');
+      });
+      
+      document.getElementById('text-size-decrease').addEventListener('click', function() {
+        document.body.style.fontSize = '1rem';
+        localStorage.setItem('fontSize', '1rem');
+      });
+      
+      document.getElementById('high-contrast').addEventListener('click', function() {
+        document.body.classList.toggle('high-contrast');
+        localStorage.setItem('highContrast', document.body.classList.contains('high-contrast'));
+      });
+      
+      document.getElementById('screen-reader').addEventListener('click', function() {
+        alert('Voice navigation mode activated. Use keyboard arrow keys to navigate between elements.');
+      });
+      
+      // Load saved settings
+      if (localStorage.getItem('highContrast') === 'true') {
+        document.body.classList.add('high-contrast');
+      }
+      
+      const savedFontSize = localStorage.getItem('fontSize');
+      if (savedFontSize) {
+        document.body.style.fontSize = savedFontSize;
+      }
+    }
+    
+    // Setup export functionality
+    function setupExportFunctionality() {
+      document.getElementById('download-pdf').addEventListener('click', function() {
+        generatePDFReport();
+      });
+      
+      document.getElementById('export-full-plan').addEventListener('click', function() {
+        generatePDFReport();
+      });
+    }
+    
+    // Generate PDF report
+    function generatePDFReport() {
+      const reportContent = `
+        UNIVERSAL DISABILITY CAREER & OPPORTUNITY ENGINE
+        =================================================
+        
+        PERSONAL ASSESSMENT REPORT
+        ==========================
+        Assessment Date: ${assessmentData.assessmentDate}
+        Education Level: ${assessmentData.education}
+        Location: ${assessmentData.location}
+        
+        DISABILITY PROFILE
+        ==================
+        ${assessmentData.disabilities.map(dis => 
+          `${dis.name} - ${dis.severity} Severity (${dis.percent}%)\n${dis.description}\n`
+        ).join('\n')}
+        
+        RECOMMENDED CAREER PATHS
+        ========================
+        Content Creation:
+        ${assessmentData.careerRecommendations.content.map(career => 
+          `• ${career.title} - ${career.income}\n  ${career.description}\n  Compatibility: ${career.compatibility}%\n`
+        ).join('\n')}
+        
+        Technology:
+        ${assessmentData.careerRecommendations.tech.map(career => 
+          `• ${career.title} - ${career.income}\n  ${career.description}\n  Compatibility: ${career.compatibility}%\n`
+        ).join('\n')}
+        
+        Education:
+        ${assessmentData.careerRecommendations.education.map(career => 
+          `• ${career.title} - ${career.income}\n  ${career.description}\n  Compatibility: ${career.compatibility}%\n`
+        ).join('\n')}
+        
+        GOVERNMENT SCHEMES
+        ==================
+        ${assessmentData.schemes.map(scheme => 
+          `• ${scheme.name}
+  ${scheme.description}
+  Eligibility: ${scheme.eligibility}
+  Benefit: ${scheme.benefit}
+`
+        ).join('\n')}
+        
+        6-MONTH ACTION PLAN
+        ==================
+        ${assessmentData.actionPlan.map((item, index) => 
+          `${index + 1}. ${item}`
+        ).join('\n')}
+        
+        This report was generated by the Universal Disability Career & Opportunity Engine (UDCOE)
+        An initiative under the Rights of Persons with Disabilities Act, 2016
+      `;
+      
+      // In a real application, this would generate an actual PDF
+      // For demo purposes, we'll just show an alert and create a text file
+      alert('Your career plan has been prepared for download. In a production system, this would generate a professional PDF report.');
+      
+      // Create downloadable text file
+      const blob = new Blob([reportContent], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `UDCOE_Career_Plan_${new Date().toISOString().split('T')[0]}.txt`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+    
+    // Initialize the dashboard when DOM is loaded
+    document.addEventListener('DOMContentLoaded', initDashboard);
+  </script>
+</body>
+</html>

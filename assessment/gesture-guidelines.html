@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Gesture Guidelines - Hand Gesture Instructions</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+:root {
+  --primary: #2E7D32;
+  --primary-dark: #1a1a1a;
+  --text-light: #f5f5f5;
+  --green-light: #4CAF50;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--primary-dark);
+  color: var(--text-light);
+  padding: 20px;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: rgba(46, 125, 50, 0.05);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+  text-align: center;
+  color: var(--green-light);
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.subtitle {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #ccc;
+  margin-bottom: 40px;
+}
+
+.gesture-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.gesture-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid var(--green-light);
+  border-radius: 15px;
+  padding: 30px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.gesture-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(76, 175, 80, 0.3);
+  border-color: #8BC34A;
+}
+
+.gesture-icon {
+  font-size: 5rem;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.gesture-name {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: var(--green-light);
+  margin-bottom: 15px;
+}
+
+.gesture-description {
+  font-size: 1.1rem;
+  color: #ccc;
+  line-height: 1.6;
+}
+
+.instructions-box {
+  background: rgba(76, 175, 80, 0.1);
+  border: 2px solid var(--green-light);
+  border-radius: 15px;
+  padding: 30px;
+  margin-bottom: 30px;
+}
+
+.instructions-box h2 {
+  color: var(--green-light);
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+}
+
+.instructions-box ul {
+  font-size: 1.1rem;
+  line-height: 2;
+}
+
+.instructions-box li {
+  margin-bottom: 10px;
+}
+
+.btn-proceed {
+  display: inline-block;
+  background: linear-gradient(135deg, #2E7D32, #1B5E20);
+  color: white;
+  padding: 15px 40px;
+  font-size: 1.2rem;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-proceed:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(46, 125, 50, 0.4);
+  color: white;
+}
+
+.audio-status {
+  text-align: center;
+  margin: 20px 0;
+  font-size: 1.1rem;
+  color: var(--green-light);
+}
+
+.speaker-icon {
+  font-size: 2rem;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>✋ Hand Gesture Guidelines</h1>
+  <p class="subtitle">Learn how to control the assessment using simple hand gestures</p>
+  
+  <div class="audio-status" id="audio-status">
+    <span class="speaker-icon">🔊</span>
+    <p>Audio instructions playing...</p>
+  </div>
+
+  <div class="instructions-box">
+    <h2>🎯 How It Works</h2>
+    <ul>
+      <li><strong>No keyboard or mouse needed</strong> - Control everything with your hands</li>
+      <li><strong>Your webcam will detect your hand gestures</strong> in real-time</li>
+      <li><strong>Each gesture performs a specific action</strong> during the assessment</li>
+      <li><strong>Questions will be read aloud automatically</strong> so you can focus on gestures</li>
+      <li><strong>You can repeat any question</strong> by using the Repeat gesture</li>
+    </ul>
+  </div>
+
+  <h2 style="text-align: center; color: var(--green-light); margin-bottom: 30px;">Supported Gestures</h2>
+
+  <div class="gesture-grid">
+    <div class="gesture-card">
+      <span class="gesture-icon">👍</span>
+      <div class="gesture-name">YES</div>
+      <div class="gesture-description">
+        <strong>Thumbs Up</strong><br>
+        Selects "Yes" as your answer to the current question.
+      </div>
+    </div>
+
+    <div class="gesture-card">
+      <span class="gesture-icon">👎</span>
+      <div class="gesture-name">NO</div>
+      <div class="gesture-description">
+        <strong>Thumbs Down</strong><br>
+        Selects "No" as your answer to the current question.
+      </div>
+    </div>
+
+    <div class="gesture-card">
+      <span class="gesture-icon">👉</span>
+      <div class="gesture-name">SKIP</div>
+      <div class="gesture-description">
+        <strong>Point Forward</strong><br>
+        Skips the current question and moves to the next one.
+      </div>
+    </div>
+
+    <div class="gesture-card">
+      <span class="gesture-icon">🔁</span>
+      <div class="gesture-name">REPEAT</div>
+      <div class="gesture-description">
+        <strong>Circular Motion</strong><br>
+        Repeats the current question aloud so you can hear it again.
+      </div>
+    </div>
+
+    <div class="gesture-card">
+      <span class="gesture-icon">✋</span>
+      <div class="gesture-name">IDLE</div>
+      <div class="gesture-description">
+        <strong>Rest Position</strong><br>
+        No action is taken. Use this when you're thinking or not ready.
+      </div>
+    </div>
+  </div>
+
+  <div class="instructions-box">
+    <h2>💡 Tips for Best Results</h2>
+    <ul>
+      <li><strong>Good lighting:</strong> Make sure your hand is clearly visible</li>
+      <li><strong>Keep hand steady:</strong> Hold each gesture for 1-2 seconds</li>
+      <li><strong>Face the camera:</strong> Position your hand in front of the webcam</li>
+      <li><strong>One gesture at a time:</strong> Wait between gestures to avoid confusion</li>
+      <li><strong>Relax:</strong> The system is designed to be forgiving and accessible</li>
+    </ul>
+  </div>
+
+  <div style="text-align: center; margin-top: 40px;">
+    <a href="assessment.html" class="btn-proceed">
+      Proceed to Assessment →
+    </a>
+  </div>
+</div>
+
+<script>
+// Text-to-Speech Audio Instructions
+const audioText = `
+Welcome to the Gesture Guidelines page.
+
+This assessment system is designed for people with disabilities and uses hand gesture recognition.
+You do not need a keyboard or mouse. Everything can be controlled with simple hand gestures.
+
+Here are the five gestures you can use:
+
+Gesture number one: YES.
+Show a thumbs up gesture to select Yes as your answer.
+
+Gesture number two: NO.
+Show a thumbs down gesture to select No as your answer.
+
+Gesture number three: SKIP.
+Point forward with your index finger to skip the current question and move to the next one.
+
+Gesture number four: REPEAT.
+Make a circular motion with your hand to repeat the current question aloud.
+
+Gesture number five: IDLE.
+This is your rest position. When no specific gesture is detected, no action will be taken.
+Use this when you are thinking or not ready to answer.
+
+Tips for best results:
+Make sure you have good lighting so your hand is clearly visible.
+Keep your hand steady and hold each gesture for one to two seconds.
+Face the camera and position your hand in front of the webcam.
+Use one gesture at a time and wait between gestures.
+
+When you are ready, click the Proceed to Assessment button to begin.
+The webcam will start automatically, and questions will be read aloud.
+Good luck!
+`;
+
+// Auto-play audio instructions when page loads
+window.addEventListener('DOMContentLoaded', () => {
+  if ('speechSynthesis' in window) {
+    const utterance = new SpeechSynthesisUtterance(audioText);
+    utterance.rate = 0.9;
+    utterance.pitch = 1;
+    utterance.volume = 1;
+    
+    utterance.onstart = () => {
+      document.getElementById('audio-status').innerHTML = `
+        <span class="speaker-icon">🔊</span>
+        <p>Audio instructions playing...</p>
+      `;
+    };
+    
+    utterance.onend = () => {
+      document.getElementById('audio-status').innerHTML = `
+        <span class="speaker-icon">✅</span>
+        <p>Audio instructions complete. You may proceed to the assessment.</p>
+      `;
+    };
+    
+    // Small delay to ensure page is fully loaded
+    setTimeout(() => {
+      window.speechSynthesis.speak(utterance);
+    }, 500);
+  } else {
+    document.getElementById('audio-status').innerHTML = `
+      <p style="color: #ff9800;">⚠️ Text-to-speech not supported in your browser. Please read the instructions on screen.</p>
+    `;
+  }
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Universal Disability Career & Opportunity Engine (UDCOE)</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+   
+  
+  <style>
+    :root {
+      --primary: #1976d2;
+      --secondary: #424242;
+      --accent: #e91e63;
+      --success: #4caf50;
+      --warning: #ff9800;
+      --danger: #f44336;
+      --light: #f8f9fa;
+      --dark: #212121;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #e8f0fe 100%);
+      color: var(--secondary);
+      padding-top: 20px;
+    }
+    .hero-section {
+      background: linear-gradient(135deg, var(--primary), #0d47a1);
+      color: white;
+      padding: 60px 20px;
+      border-radius: 20px;
+      margin-bottom: 40px;
+      box-shadow: 0 10px 30px rgba(25, 118, 210, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-section::before {
+      content: "";
+      position: absolute;
+      top: -50px;
+      right: -50px;
+      width: 200px;
+      height: 200px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+    }
+    .hero-title {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    .hero-subtitle {
+      font-size: 1.4rem;
+      max-width: 800px;
+      margin: 0 auto 30px;
+      line-height: 1.7;
+      opacity: 0.95;
+    }
+    .stats-bar {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin: 30px 0;
+      flex-wrap: wrap;
+    }
+    .stat-item {
+      text-align: center;
+      background: rgba(255, 255, 255, 0.15);
+      padding: 15px 25px;
+      border-radius: 15px;
+      min-width: 140px;
+    }
+    .stat-number {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+    .stat-label {
+      font-size: 0.95rem;
+      opacity: 0.9;
+    }
+    .domain-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 25px;
+      margin-top: 20px;
+    }
+    .domain-card {
+      background: white;
+      border-radius: 18px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+      padding: 30px 20px;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      text-align: center;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid #eee;
+    }
+    .domain-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 25px rgba(25, 118, 210, 0.25);
+      border-color: var(--primary);
+    }
+    .domain-icon {
+      font-size: 3.8rem;
+      margin-bottom: 20px;
+      transition: transform 0.3s ease;
+      color: var(--primary);
+    }
+    .domain-card:hover .domain-icon {
+      transform: scale(1.15) rotate(5deg);
+    }
+    .domain-name {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--primary);
+    }
+    .domain-desc {
+      line-height: 1.6;
+      color: #555;
+      min-height: 60px;
+    }
+    .domain-stats {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 15px;
+    }
+    .domain-badge {
+      font-size: 0.85rem;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-weight: 600;
+    }
+    .badge-careers { background: #e3f2fd; color: var(--primary); }
+    .badge-growth { background: #e8f5e9; color: var(--success); }
+    .step-guide {
+      background: white;
+      border-radius: 20px;
+      padding: 40px;
+      margin: 50px 0;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+      position: relative;
+    }
+    .step-guide::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 6px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+    }
+    .step-title {
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 30px;
+      color: var(--primary);
+    }
+    .steps-container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+      position: relative;
+    }
+    .step-item {
+      flex: 1;
+      min-width: 200px;
+      text-align: center;
+      padding: 25px 15px;
+      border-radius: 15px;
+      background: #f9fbff;
+      position: relative;
+      z-index: 2;
+    }
+    .step-number {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      background: var(--primary);
+      color: white;
+      border-radius: 50%;
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin: 0 auto 15px;
+    }
+    .step-label {
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+      color: var(--secondary);
+    }
+    .step-desc {
+      font-size: 0.95rem;
+      color: #666;
+    }
+    .testimonial-card {
+      background: white;
+      border-radius: 18px;
+      padding: 25px;
+      margin: 20px 0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      border-left: 4px solid var(--accent);
+    }
+    .testimonial-text {
+      font-style: italic;
+      margin-bottom: 15px;
+      color: #444;
+    }
+    .testimonial-author {
+      font-weight: 600;
+      color: var(--primary);
+    }
+    .quick-actions {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      flex-wrap: wrap;
+      margin: 30px 0;
+    }
+    .action-btn {
+      padding: 14px 32px;
+      font-weight: 600;
+      border-radius: 14px;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .btn-assessment {
+      background: var(--accent);
+      color: white;
+      box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);
+    }
+    .btn-assessment:hover {
+      background: #d81b60;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(233, 30, 99, 0.4);
+    }
+    .btn-resources {
+      background: #3f51b5;
+      color: white;
+      box-shadow: 0 4px 15px rgba(63, 81, 181, 0.3);
+    }
+    .btn-resources:hover {
+      background: #283593;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(63, 81, 181, 0.4);
+    }
+    .footer-section {
+      margin-top: 60px;
+      padding-top: 30px;
+      border-top: 1px solid #e0e0e0;
+      text-align: center;
+      color: var(--secondary);
+    }
+    @media (max-width: 768px) {
+      .hero-title { font-size: 2.3rem; }
+      .hero-subtitle { font-size: 1.1rem; }
+      .domain-grid { grid-template-columns: 1fr; }
+      .steps-container { flex-direction: column; }
+      .quick-actions { flex-direction: column; align-items: center; }
+      .action-btn { width: 90%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container py-4">
+    <!-- Hero Section - Simplified -->
+    <div class="hero-section text-center">
+      <h1 class="hero-title">Universal Disability Career & Opportunity Engine</h1>
+      <p class="hero-subtitle">
+        Discover realistic, accessible, and personalized career pathways across all industries — tailored to your unique abilities and disability profile.
+      </p>
+
+      <div class="quick-actions" style="margin-top: 40px;">
+        <a href="assessment.html" class="action-btn btn-assessment">
+          <i class="fas fa-user-check"></i> Start Assessment
+        </a>
+      </div>
+    </div>
+
+    <!-- Rules / Guidelines Section -->
+    <div class="step-guide" style="margin-top: 40px;">
+      <h2 class="step-title">Assessment Guidelines</h2>
+      <div class="steps-container" style="flex-direction: column; gap: 15px;">
+        <div class="step-item" style="text-align: left; padding: 20px;">
+          <div style="display: flex; align-items: start; gap: 15px;">
+            <div style="font-size: 1.5rem;">🔒</div>
+            <div>
+              <div class="step-label" style="margin-bottom: 5px;">Confidential & Private</div>
+              <div class="step-desc">Your assessment is completely confidential. All information is stored securely and will only be used to provide personalized recommendations.</div>
+            </div>
+          </div>
+        </div>
+        <div class="step-item" style="text-align: left; padding: 20px;">
+          <div style="display: flex; align-items: start; gap: 15px;">
+            <div style="font-size: 1.5rem;">✓</div>
+            <div>
+              <div class="step-label" style="margin-bottom: 5px;">No Right or Wrong Answers</div>
+              <div class="step-desc">There are no correct or incorrect answers. Be honest about your experiences and challenges. Your responses help us understand your unique situation better.</div>
+            </div>
+          </div>
+        </div>
+        <div class="step-item" style="text-align: left; padding: 20px;">
+          <div style="display: flex; align-items: start; gap: 15px;">
+            <div style="font-size: 1.5rem;">❓</div>
+            <div>
+              <div class="step-label" style="margin-bottom: 5px;">Choose "Not Sure" If Confused</div>
+              <div class="step-desc">If you're unsure about any question or option, feel free to select "Not Sure". This helps us provide you with broader recommendations.</div>
+            </div>
+          </div>
+        </div>
+        <div class="step-item" style="text-align: left; padding: 20px;">
+          <div style="display: flex; align-items: start; gap: 15px;">
+            <div style="font-size: 1.5rem;">🎯</div>
+            <div>
+              <div class="step-label" style="margin-bottom: 5px;">Personalized Results</div>
+              <div class="step-desc">Your results are tailored specifically to your profile, interests, and abilities. Each recommendation is designed to match your unique needs.</div>
+            </div>
+          </div>
+        </div>
+        <div class="step-item" style="text-align: left; padding: 20px;">
+          <div style="display: flex; align-items: start; gap: 15px;">
+            <div style="font-size: 1.5rem;">⏱️</div>
+            <div>
+              <div class="step-label" style="margin-bottom: 5px;">Takes Approximately 15-20 Minutes</div>
+              <div class="step-desc">The assessment typically takes 15-20 minutes to complete. You can take breaks and return to complete it at your own pace.</div>
+            </div>
+          </div>
+        </div>
+        <div class="step-item" style="text-align: left; padding: 20px;">
+          <div style="display: flex; align-items: start; gap: 15px;">
+            <div style="font-size: 1.5rem;">♿</div>
+            <div>
+              <div class="step-label" style="margin-bottom: 5px;">Accessible for All Users</div>
+              <div class="step-desc">The assessment is designed to be accessible for users with various disabilities. Screen readers, keyboard navigation, and other assistive technologies are fully supported.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer-section" style="margin-top: 60px;">
+      <p class="mb-1"><strong>Universal Disability Career & Opportunity Engine (UDCOE)</strong></p>
+      <p class="mb-1">© 2026 An initiative under the Rights of Persons with Disabilities Act, 2016</p>
+      <p class="mb-0">Developed with ❤️ for inclusive employment and empowerment</p>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+</html>

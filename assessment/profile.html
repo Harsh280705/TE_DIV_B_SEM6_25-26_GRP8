@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Profile Settings - UDCOE</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --dark: #121212;
+      --darker: #0a0a0a;
+      --primary: #4CAF50;
+      --text: #ffffff;
+      --card-bg: #1e1e1e;
+      --border: #333333;
+    }
+    body {
+      background: var(--darker);
+      color: var(--text);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 20px;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 800px;
+      margin-top: 50px;
+    }
+    h1 {
+      color: var(--text);
+      font-weight: bold;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    .profile-card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      border: 1px solid var(--border);
+    }
+    .section-title {
+      color: var(--primary);
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      border-bottom: 2px solid var(--primary);
+      padding-bottom: 5px;
+    }
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .info-label {
+      font-weight: 500;
+      color: #aaa;
+    }
+    .info-value {
+      font-weight: 600;
+    }
+    .back-link {
+      display: inline-block;
+      color: var(--primary);
+      text-decoration: none;
+      margin-bottom: 20px;
+      font-weight: 500;
+    }
+    .back-link:hover {
+      text-decoration: underline;
+    }
+    .loading {
+      text-align: center;
+      padding: 40px;
+      font-size: 1.2rem;
+      color: #999;
+    }
+    .error {
+      color: #ff6b6b;
+      text-align: center;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="assessment.html" class="back-link">← Back to Assessment</a>
+    <h1>Profile Settings</h1>
+
+    <div class="profile-card" id="profile-content">
+      <div class="loading" id="loading">Loading profile...</div>
+    </div>
+  </div>
+
+  <script type="module">
+    // Import your Firebase config (must be at ../src/config/firebase.js)
+    import { initializeFirebase, getAuthInstance, getDbInstance } from '../src/config/firebase.js';
+
+    // Dynamically import Firestore methods — NO TRAILING SPACES!
+    const { doc, getDoc } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
+
+    const profileContent = document.getElementById('profile-content');
+
+    try {
+      // Initialize Firebase
+      await initializeFirebase();
+      const auth = await getAuthInstance();
+      const db = await getDbInstance();
+
+      // Wait for auth state to resolve
+      const user = auth.currentUser;
+
+      if (!user) {
+        // If no current user, listen for state change
+        auth.onAuthStateChanged(async (newUser) => {
+          if (!newUser) {
+            profileContent.innerHTML = `
+              <div class="error">
+                <p>❌ You are not logged in.</p>
+                <p>Please <a href="login.html" style="color: var(--primary); text-decoration: underline;">log in</a> first.</p>
+              </div>
+            `;
+            return;
+          }
+          await loadUserProfile(newUser, db);
+        });
+      } else {
+        // User already logged in
+        await loadUserProfile(user, db);
+      }
+
+    } catch (error) {
+      console.error("Firebase initialization failed:", error);
+      profileContent.innerHTML = `
+        <div class="error">
+          <p>❌ Failed to connect to Firebase.</p>
+          <p>${error.message}</p>
+        </div>
+      `;
+    }
+
+    // Helper function to load and render user profile
+    async function loadUserProfile(user, db) {
+      try {
+        const userDocRef = doc(db, "users", user.uid);
+        const userDocSnap = await getDoc(userDocRef);
+
+        if (!userDocSnap.exists()) {
+          throw new Error("No profile found. Please complete your assessment.");
+        }
+
+        const userData = userDocSnap.data();
+
+        profileContent.innerHTML = `
+          <div class="section-title">Personal Information</div>
+          <div class="info-row">
+            <span class="info-label">Name:</span>
+            <span class="info-value">${userData.name || 'Not set'}</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Email:</span>
+            <span class="info-value">${userData.email || user.email || 'Not set'}</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Age:</span>
+            <span class="info-value">${userData.age || 'Not set'}</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Gender:</span>
+            <span class="info-value">${userData.gender || 'Not set'}</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Location:</span>
+            <span class="info-value">${userData.location || 'Not set'}</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Contact:</span>
+            <span class="info-value">${userData.contact || 'Not set'}</span>
+          </div>
+        `;
+      } catch (error) {
+        console.error("Failed to load profile:", error);
+        profileContent.innerHTML = `
+          <div class="error">
+            <p>❌ ${error.message}</p>
+            <p>If you just completed the assessment, please wait a moment and refresh.</p>
+          </div>
+        `;
+      }
+    }
+  </script>
+</body>
+</html>

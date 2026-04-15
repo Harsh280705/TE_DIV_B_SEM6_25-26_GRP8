@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Explore career domains aligned with your assessment results and interests"/>
+<title>Career Domains - UDCOE</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+ 
+<style>
+:root {
+  --primary-green: #2E7D32;
+  --green-dark: #1B5E20;
+  --green-light: #4CAF50;
+  --green-accent: #66BB6A;
+  --dark-bg: #1a1a1a;
+  --card-bg: #242424;
+  --text-light: #FFFFFF;
+  --text-secondary: #CCCCCC;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+  color: var(--text-light);
+  padding-top: 20px;
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+/* WCAG 2.1: Focus Indicators */
+*:focus {
+  outline: 3px solid #FFD700 !important;
+  outline-offset: 2px !important;
+}
+
+/* WCAG 2.1: Skip to main content link */
+.skip-to-main {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: #000;
+  color: white;
+  padding: 8px 16px;
+  z-index: 100;
+  text-decoration: none;
+  border-radius: 0 0 4px 0;
+  font-weight: bold;
+}
+
+.skip-to-main:focus {
+  top: 0;
+}
+
+.content-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.page-header h1 {
+  color: var(--green-light);
+  font-weight: 800;
+  margin-bottom: 15px;
+  text-shadow: 0 2px 10px rgba(46, 125, 50, 0.3);
+  font-size: 2.5rem;
+  line-height: 1.2;
+}
+
+.page-header .lead {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+.page-header .text-muted {
+  color: var(--text-secondary);
+}
+
+.domain-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.domain-box {
+  background: linear-gradient(135deg, rgba(46, 125, 50, 0.08), rgba(27, 94, 32, 0.03));
+  border-radius: 20px;
+  padding: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(46, 125, 50, 0.1);
+  border: 3px solid rgba(46, 125, 50, 0.5);
+  position: relative;
+  overflow: hidden;
+  min-height: 280px;
+}
+
+.domain-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, var(--primary-green), var(--green-dark));
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.domain-box:hover::before,
+.domain-box:focus::before {
+  transform: scaleX(1);
+}
+
+.domain-box:hover,
+.domain-box:focus {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(46, 125, 50, 0.25);
+  border-color: rgba(46, 125, 50, 0.7);
+  background: linear-gradient(135deg, rgba(46, 125, 50, 0.12), rgba(27, 94, 32, 0.08));
+}
+
+.domain-box:focus {
+  outline: 3px solid #FFD700 !important;
+  outline-offset: 2px !important;
+}
+
+.domain-icon {
+  font-size: 3.5rem;
+  margin-bottom: 15px;
+  display: block;
+  aria-hidden: true;
+}
+
+.domain-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--green-light);
+  margin-bottom: 10px;
+  text-shadow: 0 2px 5px rgba(46, 125, 50, 0.2);
+}
+
+.domain-description {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+.domain-accessibility {
+  background: rgba(46, 125, 50, 0.1);
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  color: var(--green-light);
+  margin-top: 15px;
+  border: 1px solid rgba(46, 125, 50, 0.3);
+}
+
+.domain-stats {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid rgba(255, 140, 0, 0.2);
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.breadcrumb-nav {
+  background: rgba(46, 125, 50, 0.08);
+  border: 1px solid rgba(46, 125, 50, 0.3);
+  border-radius: 10px;
+  padding: 15px 25px;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 15px rgba(46, 125, 50, 0.1);
+}
+
+.breadcrumb-nav .breadcrumb-item a {
+  color: var(--primary-green);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.breadcrumb-nav .breadcrumb-item a:hover,
+.breadcrumb-nav .breadcrumb-item a:focus {
+  color: var(--green-light);
+  text-shadow: 0 0 10px rgba(46, 125, 50, 0.5);
+  outline: 3px solid #FFD700 !important;
+  outline-offset: 2px !important;
+}
+
+.breadcrumb-nav .breadcrumb-item.active {
+  color: var(--text-secondary);
+}
+
+.back-button {
+  margin-bottom: 20px;
+}
+
+.btn-outline-primary {
+  color: var(--primary-green) !important;
+  border-color: var(--primary-green) !important;
+  transition: all 0.3s ease;
+  min-height: 44px;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary:focus {
+  background-color: var(--primary-green) !important;
+  border-color: var(--primary-green) !important;
+  color: white !important;
+  box-shadow: 0 5px 15px rgba(46, 125, 50, 0.3);
+  outline: 3px solid #FFD700 !important;
+  outline-offset: 2px !important;
+}
+</style>
+</head>
+<body>
+<!-- WCAG 2.1: Skip to main content link -->
+<a href="#main-content" class="skip-to-main">Skip to main content</a>
+
+<div class="container content-container">
+  <div class="breadcrumb-nav" role="navigation" aria-label="breadcrumb">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb mb-0">
+        <li class="breadcrumb-item"><a href="../index.html#/dashboard" class="text-decoration-none"><i class="🏠 me-1" aria-hidden="true"></i><span>Home</span></a></li>
+        <li class="breadcrumb-item"><a href="assessment-results.html" class="text-decoration-none">Assessment Results</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Career Domains</li>
+      </ol>
+    </nav>
+  </div>
+
+  <div class="back-button">
+    <a href="assessment-results.html" class="btn btn-outline-primary" role="link" aria-label="Go back to assessment results">
+      <i class="← me-2" aria-hidden="true"></i><span>Back to Results</span>
+    </a>
+  </div>
+
+  <main id="main-content" role="main">
+    <div class="page-header">
+      <h1><i class="🗂️ me-2" aria-hidden="true"></i>Career Domains</h1>
+      <p class="lead">Explore career opportunities across different domains</p>
+      <p class="text-muted">Click on any domain to explore subdomains and career paths</p>
+    </div>
+
+    <div id="domains-content" role="region" aria-live="polite" aria-label="Career domains list">
+      <!-- Domains will be loaded here -->
+    </div>
+  </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/domain-extractor.js"></script>
+<script src="js/career-mapper.js"></script>
+<script>
+  // Load domainData from domain.html
+  async function loadDomainData() {
+    // Check if domainData is already available globally (from domain.html)
+    if (window.domainData) {
+      console.log('Found domainData in window:', Object.keys(window.domainData));
+      return window.domainData;
+    }
+    
+    // Try to load domain.html in a hidden iframe to execute its scripts
+    return new Promise((resolve) => {
+      const iframe = document.createElement('iframe');
+      iframe.style.display = 'none';
+      iframe.src = 'domain.html';
+      iframe.onload = () => {
+        try {
+          // Access domainData from iframe's window
+          const iframeDomainData = iframe.contentWindow.domainData;
+          if (iframeDomainData) {
+            window.domainData = iframeDomainData; // Cache it
+            console.log('Loaded domainData from domain.html via iframe:', Object.keys(iframeDomainData));
+            resolve(iframeDomainData);
+          } else {
+            console.warn('domainData not found in iframe');
+            resolve(null);
+          }
+        } catch (e) {
+          console.warn('Could not access domainData from iframe (CORS):', e);
+          resolve(null);
+        }
+        document.body.removeChild(iframe);
+      };
+      document.body.appendChild(iframe);
+      
+      // Timeout fallback
+      setTimeout(() => {
+        if (iframe.parentNode) {
+          document.body.removeChild(iframe);
+          resolve(null);
+        }
+      }, 3000);
+    });
+  }
+  
+  async function loadDomains() {
+    console.log('loadDomains called');
+    let domains = {};
+    let careerPaths = null; // ✅ FIXED: declared outside try
+
+    try {
+      // Get career paths from localStorage
+      const careerPathsStr = localStorage.getItem('careerPaths');
+  
+      if (careerPathsStr) {
+        try {
+          careerPaths = JSON.parse(careerPathsStr); // ✅ assigned inside try
+          console.log('Loaded careerPaths:', careerPaths);
+          console.log('Career paths domains:', Object.keys(careerPaths.domains || {}));
+        } catch (e) {
+          console.error('Error parsing careerPaths:', e);
+        }
+      } else {
+        console.warn('No careerPaths found in localStorage');
+      }
+
+      // Get pre-assessment data for interests
+      const preAssessmentStr = localStorage.getItem('preAssessmentData');
+      const preAssessmentData = preAssessmentStr ? JSON.parse(preAssessmentStr) : null;
+      const interests = preAssessmentData ? (preAssessmentData.interests || []) : [];
+      console.log('Interests:', interests);
+
+      // Wait for domainExtractor to be available and initialized
+      let attempts = 0;
+      while ((!window.domainExtractor || !window.domainExtractor.domains) && attempts < 50) {
+        await new Promise(resolve => setTimeout(resolve, 100));
+        attempts++;
+        // Try to initialize if it exists but isn't initialized
+        if (window.domainExtractor && !window.domainExtractor.domains) {
+          await window.domainExtractor.initialize();
+        }
+      }
+
+      // Load domains
+      if (!window.domainExtractor) {
+        console.error('domainExtractor not available after waiting');
+        document.getElementById('domains-content').innerHTML = `
+          <div class="alert alert-danger">
+            <h4>Error Loading Domains</h4>
+            <p>Please refresh the page or contact support.</p>
+          </div>
+        `;
+        return;
+      }
+
+      // ✅ SINGLE SOURCE OF TRUTH: Load ALL domains from domainExtractor FIRST
+      // This ensures we get all 22 domains (12 existing + 10 new)
+      const allDomainsFromExtractor = await window.domainExtractor.loadDomains();
+      console.log('✅ Loaded ALL domains from domainExtractor (single source of truth):', Object.keys(allDomainsFromExtractor));
+      console.log('✅ Total domain count:', Object.keys(allDomainsFromExtractor).length);
+      
+      // Convert domainExtractor format to display format
+      Object.keys(allDomainsFromExtractor).forEach(key => {
+        const domain = allDomainsFromExtractor[key];
+        domains[key] = {
+          name: domain.name,
+          description: domain.description || '',
+          icon: domain.icon || '📁',
+          accessibilityNote: domain.accessibilityNote || 'Accessible career options available',
+          color: '#1976d2' // Default color, can be enhanced later
+        };
+      });
+      
+      console.log('✅ Loaded all domains (from domainExtractor):', Object.keys(domains));
+      console.log('✅ Total domains available:', Object.keys(domains).length);
+
+      // ✅ CRITICAL FIX: Check if "not-sure" is selected FIRST
+      // If "not-sure" is selected, show ALL domains regardless of career paths
+      if (interests.includes('not-sure')) {
+        console.log('"Not sure" selected - showing ALL available domains (skipping all filtering)');
+        console.log('✅ Showing ALL', Object.keys(domains).length, 'domains from domainExtractor');
+        // Keep all domains as loaded from domainExtractor - don't filter by career paths or interests
+      } else if (interests.length > 0) {
+        // ✅ CRITICAL FIX: Specific interests selected - show ONLY domains matching those interests
+        // Do NOT filter by career paths when specific interests are selected
+        // Career paths are disability-based and may not align with user's selected interests
+        console.log('Specific interests selected - showing ONLY interest-matched domains:', interests);
+        
+        // Filter domains by interests using domainExtractor
+        // Use the already-loaded allDomainsFromExtractor (no need to reload)
+        if (window.domainExtractor) {
+          const interestFilteredDomains = window.domainExtractor.filterDomainsByInterests(allDomainsFromExtractor, interests);
+          
+          console.log('Interest-filtered domains (showing only these):', Object.keys(interestFilteredDomains));
+          
+          if (Object.keys(interestFilteredDomains).length > 0) {
+            // Use interest-filtered domains as base (these are the domains matching user's interests)
+            domains = interestFilteredDomains;
+            
+            // If career paths exist, show only career paths within interest-matched domains
+            // This ensures users see career paths ONLY in domains they selected as interests
+            if (careerPaths && careerPaths.domains && Object.keys(careerPaths.domains).length > 0) {
+              console.log('Career paths exist - showing only career paths in interest-matched domains');
+              const filteredByInterestAndCareerPaths = {};
+              Object.keys(interestFilteredDomains).forEach(key => {
+                // Only include domain if it has career paths AND matches interests
+                if (careerPaths.domains[key] && careerPaths.domains[key].length > 0) {
+                  filteredByInterestAndCareerPaths[key] = domains[key];
+                }
+              });
+              
+              // If we have domains with career paths in interest-matched domains, use them
+              // Otherwise, show all interest-matched domains (even without career paths)
+              if (Object.keys(filteredByInterestAndCareerPaths).length > 0) {
+                domains = filteredByInterestAndCareerPaths;
+                console.log('Domains with career paths in interest-matched domains:', Object.keys(domains));
+              } else {
+                console.log('No career paths in interest-matched domains - showing all interest-matched domains');
+                // Keep all interest-matched domains even if they don't have career paths
+              }
+            }
+          } else {
+            console.log('No domains matched interests - showing all domains as fallback');
+            // Keep all domains if no interest match
+          }
+        } else {
+          // Fallback: Use manual interest mapping
+          console.log('domainExtractor not available - using fallback interest mapping');
+          const interestToDomainMap = {
+            'technology': ['gaming', 'freelancing', 'content', 'jobs'],
+            'education': ['education'],
+            'arts': ['arts', 'entertainment', 'content'],
+            'business': ['business', 'freelancing', 'jobs', 'agriculture'],
+            'healthcare': ['health'],
+            'sports': ['sports'],
+            'media': ['entertainment', 'content'],
+            'government': ['government'],
+            'social-work': ['government', 'health'],
+            'research': ['education', 'health'],
+            'agriculture': ['agriculture', 'business'],
+            'jobs': ['jobs', 'government', 'business'],
+            'freelancing': ['freelancing', 'content', 'gaming']
+          };
+          
+          const interestMatchedKeys = new Set();
+          interests.forEach(interest => {
+            const domainKeys = interestToDomainMap[interest.toLowerCase()] || [];
+            domainKeys.forEach(key => interestMatchedKeys.add(key));
+          });
+          
+          if (interestMatchedKeys.size > 0) {
+            const filtered = {};
+            interestMatchedKeys.forEach(key => {
+              if (domains[key]) filtered[key] = domains[key];
+            });
+            
+            if (Object.keys(filtered).length > 0) {
+              // Use ONLY interest-filtered domains - do NOT intersect with career paths
+              domains = filtered;
+              console.log('Interest-filtered domains (fallback, showing only these):', Object.keys(domains));
+            }
+          }
+        }
+      } else if (careerPaths && careerPaths.domains && Object.keys(careerPaths.domains).length > 0) {
+        // No specific interests selected and career paths exist - filter by career paths only
+        console.log('No specific interests - filtering by career paths only');
+        const filteredDomains = {};
+        Object.keys(careerPaths.domains).forEach(key => {
+          if (domains[key]) {
+            filteredDomains[key] = domains[key];
+          } else {
+            console.warn('Domain key not found in all domains:', key);
+          }
+        });
+
+        console.log('Filtered domains (career paths only):', Object.keys(filteredDomains));
+
+        if (Object.keys(filteredDomains).length > 0) {
+          domains = filteredDomains;
+        } else {
+          console.log('No domains matched career paths, falling back to all domains from domainExtractor');
+          // Use already-loaded allDomainsFromExtractor (no need to reload)
+          domains = {};
+          Object.keys(allDomainsFromExtractor).forEach(key => {
+            const domain = allDomainsFromExtractor[key];
+            domains[key] = {
+              name: domain.name,
+              description: domain.description || '',
+              icon: domain.icon || '📁',
+              accessibilityNote: domain.accessibilityNote || 'Accessible career options available',
+              color: '#1976d2'
+            };
+          });
+          console.log('✅ Fallback: showing all', Object.keys(domains).length, 'domains from domainExtractor');
+          
+          // If no disability-matched domains, filter by interests only
+          // If "not-sure" is selected, show ALL domains (handled by not filtering)
+          if (interests.length > 0 && !interests.includes('not-sure')) {
+            // Use domainExtractor's filterDomainsByInterests for consistent mapping
+            // Use the already-loaded allDomainsFromExtractor (no need to reload)
+            if (window.domainExtractor) {
+              const filteredByInterests = window.domainExtractor.filterDomainsByInterests(allDomainsFromExtractor, interests);
+              
+              if (Object.keys(filteredByInterests).length > 0) {
+                // Convert filtered domains to display format
+                const merged = {};
+                Object.keys(filteredByInterests).forEach(key => {
+                  const domain = filteredByInterests[key];
+                  merged[key] = {
+                    name: domain.name,
+                    description: domain.description || '',
+                    icon: domain.icon || '📁',
+                    accessibilityNote: domain.accessibilityNote || 'Accessible career options available',
+                    color: '#1976d2'
+                  };
+                });
+                domains = merged;
+                console.log('Interest-filtered domains (using domainExtractor):', Object.keys(domains));
+              }
+            } else {
+              // Fallback: Map interests to domain keys (matching domain.html keys - supports all domains)
+              const interestToDomainMap = {
+                'technology': ['gaming', 'freelancing', 'content', 'jobs'],
+                'education': ['education'],
+                'arts': ['arts', 'entertainment', 'content'],
+                'business': ['business', 'freelancing', 'jobs', 'agriculture'],
+                'healthcare': ['health'],
+                'sports': ['sports'],
+                'media': ['entertainment', 'content'],
+                'government': ['government'],
+                'social-work': ['government', 'health'],
+                'research': ['education', 'health'],
+                'agriculture': ['agriculture', 'business'],
+                'jobs': ['jobs', 'government', 'business'],
+                'freelancing': ['freelancing', 'content', 'gaming']
+              };
+              
+              const interestMatchedKeys = new Set();
+              interests.forEach(interest => {
+                const domainKeys = interestToDomainMap[interest.toLowerCase()] || [];
+                domainKeys.forEach(key => interestMatchedKeys.add(key));
+              });
+              
+              if (interestMatchedKeys.size > 0) {
+                const filtered = {};
+                interestMatchedKeys.forEach(key => {
+                  if (domains[key]) filtered[key] = domains[key];
+                });
+                if (Object.keys(filtered).length > 0) {
+                  domains = filtered;
+                  console.log('Interest-filtered domains:', Object.keys(domains));
+                }
+              }
+            }
+          }
+          
+          // If still no domains, show all domains as fallback (use already-loaded allDomainsFromExtractor)
+          if (Object.keys(domains).length === 0) {
+            console.log('No interest-matched domains, showing all domains from domainExtractor');
+            // Rebuild domains from allDomainsFromExtractor
+            domains = {};
+            Object.keys(allDomainsFromExtractor).forEach(key => {
+              const domain = allDomainsFromExtractor[key];
+              domains[key] = {
+                name: domain.name,
+                description: domain.description || '',
+                icon: domain.icon || '📁',
+                accessibilityNote: domain.accessibilityNote || 'Accessible career options available',
+                color: '#1976d2'
+              };
+            });
+            console.log('✅ Showing all', Object.keys(domains).length, 'domains from domainExtractor');
+          }
+        }
+      } else {
+        console.log('No career paths found, filtering by interests only');
+        // No career paths - filter by interests only
+        // If "not-sure" is selected, show ALL domains (handled by not filtering)
+        if (interests.length > 0 && !interests.includes('not-sure')) {
+          // Use domainExtractor's filterDomainsByInterests for consistent mapping
+          // Use already-loaded allDomainsFromExtractor (no need to reload)
+          if (window.domainExtractor) {
+            const filteredByInterests = window.domainExtractor.filterDomainsByInterests(allDomainsFromExtractor, interests);
+            
+            if (Object.keys(filteredByInterests).length > 0) {
+              // Convert filtered domains to display format
+              const merged = {};
+              Object.keys(filteredByInterests).forEach(key => {
+                const domain = filteredByInterests[key];
+                merged[key] = {
+                  name: domain.name,
+                  description: domain.description || '',
+                  icon: domain.icon || '📁',
+                  accessibilityNote: domain.accessibilityNote || 'Accessible career options available',
+                  color: '#1976d2'
+                };
+              });
+              domains = merged;
+              console.log('Interest-filtered domains (no career paths, using domainExtractor):', Object.keys(domains));
+            }
+          } else {
+            // Fallback: Map interests to domain keys from domain.html (all 12 domains)
+            const interestToDomainMap = {
+              'technology': ['gaming', 'freelancing', 'content', 'jobs'],
+              'education': ['education'],
+              'arts': ['arts', 'entertainment', 'content'],
+              'business': ['business', 'freelancing', 'jobs', 'agriculture'],
+              'healthcare': ['health'],
+              'sports': ['sports'],
+              'media': ['entertainment', 'content'],
+              'government': ['government'],
+              'social-work': ['government', 'health'],
+              'research': ['education', 'health'],
+              'agriculture': ['agriculture', 'business'],
+              'jobs': ['jobs', 'government', 'business'],
+              'freelancing': ['freelancing', 'content', 'gaming']
+            };
+            
+            const interestMatchedKeys = new Set();
+            interests.forEach(interest => {
+              const domainKeys = interestToDomainMap[interest.toLowerCase()] || [];
+              domainKeys.forEach(key => interestMatchedKeys.add(key));
+            });
+            
+            if (interestMatchedKeys.size > 0) {
+              const filtered = {};
+              interestMatchedKeys.forEach(key => {
+                if (domains[key]) filtered[key] = domains[key];
+              });
+              if (Object.keys(filtered).length > 0) {
+                domains = filtered;
+                console.log('Interest-filtered domains (fallback):', Object.keys(domains));
+              }
+            }
+          }
+        }
+        // If no interest-matched domains, show all domains
+        if (Object.keys(domains).length === 0) {
+          console.log('No interest-matched domains, showing all domains');
+          // Use already-loaded allDomainsFromExtractor (no need to reload)
+          domains = {};
+          Object.keys(allDomainsFromExtractor).forEach(key => {
+            const domain = allDomainsFromExtractor[key];
+            domains[key] = {
+              name: domain.name,
+              description: domain.description || '',
+              icon: domain.icon || '📁',
+              accessibilityNote: domain.accessibilityNote || 'Accessible career options available',
+              color: '#1976d2'
+            };
+          });
+          console.log('✅ Fallback: showing all', Object.keys(domains).length, 'domains from domainExtractor');
+        }
+      }
+
+    } catch (error) {
+      console.error('Error loading domains:', error);
+      document.getElementById('domains-content').innerHTML = `
+        <div class="alert alert-warning">
+          <h4>Unable to Load Career Domains</h4>
+          <p>Please try refreshing the page or <a href="assessment.html">retake the assessment</a>.</p>
+        </div>
+      `;
+      return;
+    }
+  
+    // ✅ HTML rendering (OUTSIDE try-catch)
+    console.log('Rendering domains. Total domains:', Object.keys(domains).length);
+    
+    if (!domains || Object.keys(domains).length === 0) {
+      console.error('No domains to display!');
+      document.getElementById('domains-content').innerHTML = `
+        <div class="alert alert-warning">
+          <h4>No Career Domains Found</h4>
+          <p>We couldn't find any career domains matching your assessment results and interests.</p>
+          <p>This might happen if:</p>
+          <ul>
+            <li>No domains match your selected interests</li>
+            <li>The assessment results don't match any available domains</li>
+          </ul>
+          <a href="assessment-results.html" class="btn btn-primary mt-3">Back to Results</a>
+          <a href="assessment.html" class="btn btn-outline-secondary mt-3">Retake Assessment</a>
+        </div>
+      `;
+      return;
+    }
+
+    // ✅ GET INTERESTS FROM PRE-ASSESSMENT DATA
+    const preAssessmentStr = localStorage.getItem('preAssessmentData');
+    const preAssessmentData = preAssessmentStr ? JSON.parse(preAssessmentStr) : null;
+    const userInterests = preAssessmentData ? (preAssessmentData.interests || []) : [];
+    
+    console.log('User interests:', userInterests);
+    
+    // ✅ INTEREST-TO-DOMAIN MAPPING (Comprehensive & Interconnected)
+    const interestToDomainMap = {
+      'technology': ['gaming', 'freelancing', 'content', 'jobs', 'education', 'business'],
+      'education': ['education', 'jobs', 'government', 'health', 'arts'],
+      'arts': ['arts', 'entertainment', 'content', 'jobs', 'freelancing'],
+      'business': ['business', 'freelancing', 'jobs', 'agriculture', 'government', 'entertainment', 'content'],
+      'healthcare': ['health', 'education', 'government', 'jobs', 'research'],
+      'sports': ['sports', 'entertainment', 'health', 'business', 'jobs', 'content', 'freelancing'],
+      'media': ['entertainment', 'content', 'jobs', 'freelancing', 'business', 'arts'],
+      'government': ['government', 'jobs', 'education', 'agriculture', 'health'],
+      'social-work': ['government', 'health', 'education', 'jobs', 'business'],
+      'research': ['education', 'health', 'agriculture', 'business', 'jobs'],
+      'agriculture': ['agriculture', 'jobs', 'business', 'government', 'health'],
+      'jobs': ['jobs', 'freelancing', 'business', 'government', 'education'],
+      'freelancing': ['freelancing', 'jobs', 'content', 'business', 'arts', 'entertainment'],
+      'not-sure': [] // Show all if not sure
+    };
+    
+    // ✅ SPLIT DOMAINS INTO MATCHING & NON-MATCHING
+    const matchingDomains = {};
+    const otherDomains = {};
+    
+    if (userInterests.includes('not-sure')) {
+      // If "Not Sure" selected, all domains are in matching
+      Object.assign(matchingDomains, domains);
+    } else {
+      // Filter based on interests
+      const matchingKeys = new Set();
+      
+      userInterests.forEach(interest => {
+        const domainKeys = interestToDomainMap[interest.toLowerCase()] || [];
+        domainKeys.forEach(key => matchingKeys.add(key));
+      });
+      
+      Object.keys(domains).forEach(key => {
+        if (matchingKeys.has(key)) {
+          matchingDomains[key] = domains[key];
+        } else {
+          otherDomains[key] = domains[key];
+        }
+      });
+    }
+    
+    console.log('Matching domains:', Object.keys(matchingDomains));
+    console.log('Other domains:', Object.keys(otherDomains));
+    
+    // ✅ RENDER BOTH SECTIONS
+    let html = '';
+    
+    // SECTION 1: MATCHING INTERESTS
+    if (Object.keys(matchingDomains).length > 0) {
+      html += `
+        <div style="margin-bottom: 60px;">
+          <h2 style="color: var(--primary-orange); font-size: 2.2rem; font-weight: 800; margin-bottom: 10px; text-shadow: 0 2px 10px rgba(255, 140, 0, 0.3);">
+            🎯 Careers Matching Your Interests
+          </h2>
+          <p style="color: var(--text-secondary); font-size: 1.05rem; margin-bottom: 30px; line-height: 1.6;">
+            Based on your selected interests, here are the career domains that align perfectly with your profile. These opportunities are tailored to match your passions and preferences.
+          </p>
+          <div class="domain-grid">
+      `;
+      
+      Object.keys(matchingDomains).forEach(domainKey => {
+        const domain = matchingDomains[domainKey];
+        if (!domain) return;
+        
+        const careerCount = careerPaths?.domains?.[domainKey]?.length || 0;
+        
+        html += `
+          <div class="domain-box" style="animation: slideInUp 0.6s ease-out both;"
+               onclick="navigateToDomain('${domainKey}')"
+               role="button"
+               tabindex="0"
+               onkeypress="if(event.key==='Enter') navigateToDomain('${domainKey}')">
+            <span class="domain-icon">${domain.icon || '📁'}</span>
+            <div class="domain-name">${domain.name || domainKey}</div>
+            <div class="domain-description">${domain.description || 'Explore career opportunities in this domain'}</div>
+            <div class="domain-accessibility">
+              <i class="✅ me-1"></i>${domain.accessibilityNote || 'Accessible career options available'}
+            </div>
+            ${careerCount > 0 ? `
+              <div class="domain-stats">
+                <span><i class="💼 me-1"></i>${careerCount} ${careerCount === 1 ? 'Career' : 'Careers'}</span>
+                <span><i class="⭐ me-1"></i>Recommended</span>
+              </div>
+            ` : `
+              <div class="domain-stats">
+                <span><i class="ℹ️ me-1"></i>Explore careers</span>
+              </div>
+            `}
+          </div>
+        `;
+      });
+      
+      html += `
+          </div>
+        </div>
+      `;
+    }
+    
+    // SECTION 2: OTHER AMAZING CAREERS
+    if (Object.keys(otherDomains).length > 0) {
+      html += `
+        <div style="background: linear-gradient(135deg, rgba(255, 140, 0, 0.05), rgba(255, 100, 0, 0.02)); 
+                    border: 2px solid rgba(255, 140, 0, 0.25); 
+                    border-radius: 25px; 
+                    padding: 50px 40px;
+                    margin-top: 40px;
+                    animation: slideInUp 0.8s ease-out 0.2s both;">
+          <h2 style="color: var(--primary-orange); font-size: 2.2rem; font-weight: 800; margin-bottom: 10px; text-shadow: 0 2px 10px rgba(255, 140, 0, 0.3);">
+            ✨ These Are Some Amazing Careers NOT In Your Interests
+          </h2>
+          <p style="color: var(--text-secondary); font-size: 1.05rem; margin-bottom: 30px; line-height: 1.6;">
+            While these domains aren't your selected interests, they might surprise you with amazing opportunities! Many people discover unexpected passions when they explore beyond their initial choices. Feel free to click and explore them too—you might find something incredible!
+          </p>
+          <div class="domain-grid">
+      `;
+      
+      Object.keys(otherDomains).forEach(domainKey => {
+        const domain = otherDomains[domainKey];
+        if (!domain) return;
+        
+        const careerCount = careerPaths?.domains?.[domainKey]?.length || 0;
+        
+        html += `
+          <div class="domain-box" style="animation: slideInUp 0.8s ease-out 0.3s both; opacity: 0.85; transition: all 0.3s ease;"
+               onmouseover="this.style.opacity='1';"
+               onmouseout="this.style.opacity='0.85';"
+               onclick="navigateToDomain('${domainKey}')"
+               role="button"
+               tabindex="0"
+               onkeypress="if(event.key==='Enter') navigateToDomain('${domainKey}')">
+            <span class="domain-icon">${domain.icon || '📁'}</span>
+            <div class="domain-name">${domain.name || domainKey}</div>
+            <div class="domain-description">${domain.description || 'Explore career opportunities in this domain'}</div>
+            <div class="domain-accessibility">
+              <i class="✅ me-1"></i>${domain.accessibilityNote || 'Accessible career options available'}
+            </div>
+            ${careerCount > 0 ? `
+              <div class="domain-stats">
+                <span><i class="💼 me-1"></i>${careerCount} ${careerCount === 1 ? 'Career' : 'Careers'}</span>
+                <span><i class="⭐ me-1"></i>Recommended</span>
+              </div>
+            ` : `
+              <div class="domain-stats">
+                <span><i class="ℹ️ me-1"></i>Explore careers</span>
+              </div>
+            `}
+          </div>
+        `;
+      });
+      
+      html += `
+          </div>
+        </div>
+      `;
+    }
+    
+    console.log('Setting HTML content, length:', html.length);
+    document.getElementById('domains-content').innerHTML = html;
+    console.log('Domains rendered successfully');
+  }
+  
+  function navigateToDomain(domainKey) {
+    window.location.href = 'career-subdomains.html?domain=' + encodeURIComponent(domainKey);
+  }
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM loaded, starting loadDomains');
+    loadDomains().catch(error => {
+      console.error('Error in loadDomains:', error);
+      document.getElementById('domains-content').innerHTML = `
+        <div class="alert alert-danger">
+          <h4>Error Loading Career Domains</h4>
+          <p>${error.message}</p>
+          <button onclick="location.reload()" class="btn btn-primary mt-2">Refresh Page</button>
+          <a href="assessment-results.html" class="btn btn-outline-secondary mt-2">Back to Results</a>
+        </div>
+      `;
+    });
+  });
+  </script>  
+</body>
+</html>

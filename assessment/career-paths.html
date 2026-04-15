@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Detailed career pathways and recommendations tailored to your profile"/>
+<title>Career Paths - UDCOE</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+ 
+<style>
+:root {
+  --primary: #2E7D32;
+  --secondary: #424242;
+  --accent: #4CAF50;
+  --success: #4caf50;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e8f0fe 100%);
+  color: var(--secondary);
+  padding-top: 20px;
+  line-height: 1.6;
+}
+
+/* WCAG 2.1: Focus Indicators */
+*:focus {
+  outline: 3px solid #FFD700 !important;
+  outline-offset: 2px !important;
+}
+
+/* WCAG 2.1: Skip Link */
+.skip-to-main {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: #000;
+  color: white;
+  padding: 8px 16px;
+  z-index: 100;
+  text-decoration: none;
+  border-radius: 0 0 4px 0;
+  font-weight: bold;
+}
+
+.skip-to-main:focus {
+  top: 0;
+}
+
+.content-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.career-card {
+  background: white;
+  border-radius: 15px;
+  padding: 30px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  border-left: 5px solid var(--primary);
+}
+
+.career-card:focus-within {
+  outline: 3px solid #FFD700 !important;
+  outline-offset: 2px !important;
+}
+
+.career-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 15px;
+  line-height: 1.2;
+}
+
+.section-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--primary);
+  margin-top: 25px;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #e3f2fd;
+}
+
+.info-box {
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  border-left: 4px solid var(--primary);
+}
+
+.roadmap-phase {
+  background: #fff8e1;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  border-left: 4px solid #ffc107;
+}
+
+.roadmap-step {
+  margin: 8px 0;
+  padding-left: 20px;
+  position: relative;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+
+.roadmap-step::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--success);
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.scheme-card {
+  background: #e8f5e9;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  border-left: 4px solid var(--success);
+}
+
+.breadcrumb-nav {
+  background: white;
+  border-radius: 10px;
+  padding: 15px 25px;
+  margin-bottom: 25px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.breadcrumb-nav a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.breadcrumb-nav a:hover,
+.breadcrumb-nav a:focus {
+  color: var(--accent);
+  text-decoration: underline;
+  outline: 3px solid #FFD700 !important;
+  outline-offset: 2px !important;
+}
+
+.badge-custom {
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  margin: 5px;
+  display: inline-block;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+
+button, .btn {
+  min-height: 44px;
+  transition: all 0.3s ease;
+}
+
+button:focus, .btn:focus {
+  outline: 3px solid #FFD700 !important;
+  outline-offset: 2px !important;
+}
+</style>
+</head>
+<body>
+<!-- WCAG 2.1: Skip to main content link -->
+<a href="#main-content" class="skip-to-main">Skip to main content</a>
+
+<div class="container content-container">
+  <div class="breadcrumb-nav" role="navigation" aria-label="breadcrumb">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb mb-0">
+        <li class="breadcrumb-item"><a href="../index.html#/dashboard" class="text-decoration-none"><i class="🏠 me-1" aria-hidden="true"></i><span>Home</span></a></li>
+        <li class="breadcrumb-item"><a href="career-domains.html" class="text-decoration-none">Career Domains</a></li>
+        <li class="breadcrumb-item"><a href="career-subdomains.html" class="text-decoration-none">Subdomains</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Career Paths</li>
+      </ol>
+    </nav>
+  </div>
+
+  <main id="main-content" role="main">
+    <div id="careers-content" role="region" aria-live="polite" aria-label="Career paths details">
+      <!-- Career paths will be loaded here -->
+    </div>
+  </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/career-mapper.js"></script>
+<script>
+function loadCareerPaths() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const domainKey = urlParams.get('domain');
+  const subdomainKey = urlParams.get('subdomain');
+  
+  if (!domainKey) {
+    window.location.href = 'career-domains.html';
+    return;
+  }
+
+  // Load domain data from iframe
+  const iframe = document.createElement('iframe');
+  iframe.style.display = 'none';
+  iframe.src = 'domain.html?domain=' + domainKey;
+  
+  iframe.onload = function() {
+    try {
+      const iframeDomainData = iframe.contentWindow.domainData;
+      let careers = [];
+      
+      if (iframeDomainData && iframeDomainData[domainKey]) {
+        const domain = iframeDomainData[domainKey];
+        console.log('Loaded domain data from domain.html:', domain.name);
+        
+        // Extract careers from subdomains
+        if (domain.subdomains && domain.subdomains.length > 0) {
+          domain.subdomains.forEach(subdomain => {
+            if (subdomain.careers && subdomain.careers.length > 0) {
+              subdomain.careers.forEach(career => {
+                careers.push({
+                  title: career.title,
+                  description: subdomain.description || 'Career opportunity in ' + domain.name,
+                  compatibility: career.compatibility,
+                  path: career.path,
+                  income: career.income,
+                  subdomain: subdomain.name,
+                  eligibility: {
+                    education: 'As per job requirements',
+                    skills: ['Industry-specific skills', 'Communication', 'Teamwork'],
+                    certifications: ['Industry-relevant certifications (optional)']
+                  },
+                  assistiveTools: {
+                    devices: ['Computer', 'Assistive technology as needed'],
+                    software: ['Industry-standard software', 'Accessible alternatives'],
+                    humanAssistance: ['Support staff as needed'],
+                    policySupport: ['UDID card', 'Workplace accommodations']
+                  },
+                  employmentType: [career.path === 'fulltime' ? 'Full-time' : career.path === 'freelance' ? 'Freelance' : 'Self-Employed'],
+                  growthPath: {
+                    entry: 'Entry level: ' + (career.income || '₹15,000-30,000/month'),
+                    mid: 'Mid level: 50-100% higher than entry',
+                    senior: 'Senior level: 2-3x entry level'
+                  },
+                  indiaFeasibility: {
+                    govtReservation: career.path === 'fulltime' ? '4% reservation where applicable' : 'N/A (self-employed)',
+                    examRelaxations: 'Extra time, assistive devices as per RPwD Act',
+                    institutions: ['Various employers across India'],
+                    accessibility: 'Reasonable accommodations provided'
+                  },
+                  roadmap: {
+                    phase1: {
+                      title: 'Foundation',
+                      steps: [
+                        'Complete relevant education/training',
+                        'Build foundational skills',
+                        'Learn about industry standards'
+                      ]
+                    },
+                    phase2: {
+                      title: 'Skill Development',
+                      steps: [
+                        'Complete specialized training',
+                        'Build portfolio/work samples',
+                        'Network with professionals'
+                      ]
+                    },
+                    phase3: {
+                      title: 'Practice & Exposure',
+                      steps: [
+                        'Complete internships or volunteer work',
+                        'Gain practical experience',
+                        'Get recommendations/testimonials'
+                      ]
+                    },
+                    phase4: {
+                      title: 'Employment / Setup',
+                      steps: [
+                        'Apply for positions',
+                        'Request workplace accommodations',
+                        'Begin career growth path'
+                      ]
+                    },
+                    expectedOutcome: 'Established career in ' + career.title,
+                    timeframe: '6-18 months'
+                  }
+                });
+              });
+            }
+          });
+        }
+        
+        // If featured career exists, add it
+        if (domain.featuredCareer) {
+          const fc = domain.featuredCareer;
+          careers.push({
+            title: fc.title,
+            description: fc.description,
+            compatibility: fc.compatibility,
+            eligibility: {
+              education: fc.requirements ? fc.requirements[0] || 'As required' : 'As required',
+              skills: fc.requirements ? fc.requirements.slice(1) : ['Relevant skills'],
+              certifications: ['Industry certifications (optional)']
+            },
+            assistiveTools: {
+              devices: ['Assistive devices as needed'],
+              software: ['Accessible software'],
+              humanAssistance: fc.accommodations || ['Support as needed'],
+              policySupport: ['UDID card', 'Workplace accommodations']
+            },
+            employmentType: ['Full-time', 'Contract'],
+            growthPath: {
+              entry: 'Entry level position',
+              mid: 'Mid-level position',
+              senior: 'Senior / Leadership position'
+            },
+            indiaFeasibility: {
+              govtReservation: '4% reservation where applicable',
+              examRelaxations: 'Extra time, assistive devices',
+              institutions: ['Various employers'],
+              accessibility: 'Reasonable accommodations'
+            },
+            roadmap: fc.roadmap ? {
+              phase1: fc.roadmap[0] || { title: 'Foundation', steps: ['Begin training'] },
+              phase2: fc.roadmap[1] || { title: 'Development', steps: ['Build skills'] },
+              phase3: fc.roadmap[2] || { title: 'Practice', steps: ['Gain experience'] },
+              phase4: { title: 'Employment', steps: ['Start career'] },
+              expectedOutcome: 'Career in ' + fc.title,
+              timeframe: '6-18 months'
+            } : {
+              phase1: { title: 'Foundation', steps: ['Begin training'] },
+              phase2: { title: 'Development', steps: ['Build skills'] },
+              phase3: { title: 'Practice', steps: ['Gain experience'] },
+              phase4: { title: 'Employment', steps: ['Start career'] },
+              expectedOutcome: 'Career in ' + fc.title,
+              timeframe: '6-18 months'
+            }
+          });
+        }
+      }
+      
+      // If no careers from domain.html, use fallback
+      if (careers.length === 0) {
+        useFallbackData();
+      } else {
+        renderCareers(careers);
+      }
+      
+      // Remove iframe
+      document.body.removeChild(iframe);
+    } catch (e) {
+      console.error('Error loading domain data:', e);
+      useFallbackData();
+      document.body.removeChild(iframe);
+    }
+  };
+  
+  document.body.appendChild(iframe);
+  
+  // Timeout fallback
+  setTimeout(() => {
+    if (iframe.parentNode) {
+      console.warn('Timeout loading domain.html, using fallback');
+      useFallbackData();
+      document.body.removeChild(iframe);
+    }
+  }, 3000);
+  
+  function useFallbackData() {
+    // Get careers for this domain/subdomain
+    const careerPathsStr = localStorage.getItem('careerPaths');
+    let careers = [];
+    
+    if (careerPathsStr) {
+      const careerPaths = JSON.parse(careerPathsStr);
+      careers = careerPaths.domains[domainKey] || [];
+    } else {
+      // Fallback: get all careers for this domain
+      Object.values(careerMapper.careers).forEach(career => {
+        if (career.domain === domainKey) {
+          careers.push(career);
+        }
+      });
+    }
+
+    // Filter by subdomain if specified
+    if (subdomainKey) {
+      careers = careers.filter(c => c.subdomain === subdomainKey);
+    }
+
+    renderCareers(careers);
+  }
+  
+  function renderCareers(careers) {
+    if (careers.length === 0) {
+      document.getElementById('careers-content').innerHTML = `
+        <div class="alert alert-info">
+          <h4>No careers found</h4>
+          <p>No career paths available for this subdomain.</p>
+          <a href="career-domains.html" class="btn btn-primary">Back to Domains</a>
+        </div>
+      `;
+      return;
+    }
+
+    // Get schemes
+    const disabilitiesStr = localStorage.getItem('assessmentDisabilities');
+    let disabilities = [];
+    if (disabilitiesStr) {
+      disabilities = JSON.parse(disabilitiesStr);
+    }
+    const schemes = careerMapper.getRelevantSchemes(disabilities);
+
+    // Render careers
+    let html = '';
+    
+    careers.forEach(career => {
+      html += `
+        <div class="career-card">
+          <h2 class="career-title">${career.title}</h2>
+          
+          <div class="section-title"><i class="ℹ️ me-2"></i>What the role involves</div>
+          <p class="lead">${career.description}</p>
+
+          <div class="section-title"><i class="🎓 me-2"></i>Eligibility</div>
+          <div class="info-box">
+            <p><strong>Education:</strong> ${career.eligibility.education}</p>
+            <p><strong>Skills:</strong> ${career.eligibility.skills.join(', ')}</p>
+            ${career.eligibility.certifications ? `<p><strong>Certifications:</strong> ${career.eligibility.certifications.join(', ')}</p>` : ''}
+          </div>
+
+          <div class="section-title"><i class="fas fa-tools me-2"></i>Assistive Tools / Accommodations</div>
+          <div class="info-box">
+            <p><strong>Devices:</strong> ${career.assistiveTools.devices.join(', ')}</p>
+            <p><strong>Software:</strong> ${career.assistiveTools.software.join(', ')}</p>
+            <p><strong>Human Assistance:</strong> ${career.assistiveTools.humanAssistance.join(', ')}</p>
+            <p><strong>Policy Support:</strong> ${career.assistiveTools.policySupport.join(', ')}</p>
+          </div>
+
+          <div class="section-title"><i class="💼 me-2"></i>Employment Type</div>
+          <div>
+            ${career.employmentType.map(type => `<span class="badge-custom bg-primary">${type}</span>`).join('')}
+          </div>
+
+          <div class="section-title"><i class="📈 me-2"></i>Growth Path</div>
+          <div class="info-box">
+            <p><strong>Entry Level:</strong> ${career.growthPath.entry}</p>
+            <p><strong>Mid Level:</strong> ${career.growthPath.mid}</p>
+            <p><strong>Senior / Leadership:</strong> ${career.growthPath.senior}</p>
+          </div>
+
+          <div class="section-title"><i class="fas fa-map-marked-alt me-2"></i>India-Specific Feasibility</div>
+          <div class="info-box">
+            <p><strong>Government Reservation:</strong> ${career.indiaFeasibility.govtReservation}</p>
+            <p><strong>Exam Relaxations:</strong> ${career.indiaFeasibility.examRelaxations}</p>
+            <p><strong>Institutions / Employers:</strong> ${career.indiaFeasibility.institutions.join(', ')}</p>
+            <p><strong>Realistic Accessibility:</strong> ${career.indiaFeasibility.accessibility}</p>
+          </div>
+
+          <div class="section-title"><i class="fas fa-route me-2"></i>Roadmap</div>
+          <div class="roadmap-phase">
+            <h5><strong>Phase 1: ${career.roadmap.phase1.title || 'Foundation'}</strong></h5>
+            ${career.roadmap.phase1.steps ? career.roadmap.phase1.steps.map(step => `<div class="roadmap-step">${step}</div>`).join('') : career.roadmap.phase1.actions ? career.roadmap.phase1.actions.map(step => `<div class="roadmap-step">${step}</div>`).join('') : '<div class="roadmap-step">Complete foundational training</div>'}
+          </div>
+          <div class="roadmap-phase">
+            <h5><strong>Phase 2: ${career.roadmap.phase2.title || 'Skill Development'}</strong></h5>
+            ${career.roadmap.phase2.steps ? career.roadmap.phase2.steps.map(step => `<div class="roadmap-step">${step}</div>`).join('') : career.roadmap.phase2.actions ? career.roadmap.phase2.actions.map(step => `<div class="roadmap-step">${step}</div>`).join('') : '<div class="roadmap-step">Develop specialized skills</div>'}
+          </div>
+          <div class="roadmap-phase">
+            <h5><strong>Phase 3: ${career.roadmap.phase3.title || 'Practice & Exposure'}</strong></h5>
+            ${career.roadmap.phase3.steps ? career.roadmap.phase3.steps.map(step => `<div class="roadmap-step">${step}</div>`).join('') : career.roadmap.phase3.actions ? career.roadmap.phase3.actions.map(step => `<div class="roadmap-step">${step}</div>`).join('') : '<div class="roadmap-step">Gain practical experience</div>'}
+          </div>
+          <div class="roadmap-phase">
+            <h5><strong>Phase 4: ${career.roadmap.phase4.title || 'Employment / Setup'}</strong></h5>
+            ${career.roadmap.phase4.steps ? career.roadmap.phase4.steps.map(step => `<div class="roadmap-step">${step}</div>`).join('') : career.roadmap.phase4.actions ? career.roadmap.phase4.actions.map(step => `<div class="roadmap-step">${step}</div>`).join('') : '<div class="roadmap-step">Begin career</div>'}
+          </div>
+          <div class="info-box mt-3">
+            <p><strong>Expected Outcome:</strong> ${career.roadmap.expectedOutcome}</p>
+            <p><strong>Timeframe:</strong> ${career.roadmap.timeframe}</p>
+          </div>
+        </div>
+      `;
+    });
+
+    // Add schemes section
+    if (schemes.length > 0) {
+      html += `
+        <div class="career-card">
+          <h2 class="career-title"><i class="fas fa-hand-holding-usd me-2"></i>Government Schemes</h2>
+          ${schemes.map(scheme => `
+            <div class="scheme-card">
+              <h5>${scheme.name}</h5>
+              <p><strong>Purpose:</strong> ${scheme.purpose || scheme.amount}</p>
+              <p><strong>Benefit:</strong> ${scheme.benefit || scheme.amount}</p>
+              <p><strong>Eligibility:</strong> ${scheme.eligibility}</p>
+              <p><strong>How to Apply:</strong> ${scheme.apply || scheme.link || 'Contact local disability commissioner office'}</p>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    }
+
+    document.getElementById('careers-content').innerHTML = html;
+  }
+}
+
+document.addEventListener('DOMContentLoaded', loadCareerPaths);
+</script>
+
+  </main>
+
+  <footer class="mt-5 py-4" style="border-top: 1px solid #ddd; text-align: center; color: #666;">
+    <p class="mb-0">Universal Disability Career & Opportunity Engine (UDCOE)</p>
+    <p class="mb-0">© 2026 An initiative under the Rights of Persons with Disabilities Act, 2016</p>
+  </footer>
+</div>
+</body>
+</html>

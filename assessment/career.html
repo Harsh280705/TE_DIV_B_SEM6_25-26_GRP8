@@ -1,0 +1,1236 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Voice Actor Career Roadmap - UDCOE</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+   
+  <style>
+    :root {
+      --primary: #2E7D32;
+      --secondary: #424242;
+      --accent: #4CAF50;
+      --success: #4caf50;
+      --warning: #ff9800;
+      --danger: #f44336;
+      --light: #f8f9fa;
+      --dark: #212121;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f7fa;
+      color: var(--secondary);
+      padding-top: 20px;
+    }
+    
+    .career-header {
+      background: linear-gradient(135deg, var(--primary), #1B5E20);
+      color: white;
+      padding: 40px 20px;
+      border-radius: 15px;
+      margin-bottom: 30px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .career-icon {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+    }
+    
+    .career-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    
+    .career-type-badge {
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-weight: 600;
+      margin-right: 8px;
+    }
+    
+    .type-fulltime { background: #e3f2fd; color: var(--primary); }
+    .type-freelance { background: #e8f5e9; color: var(--success); }
+    .type-business { background: #f3e5f5; color: #7b1fa2; }
+    .type-side { background: #fff8e1; color: var(--warning); }
+    
+    .income-range {
+      background: linear-gradient(90deg, var(--success), #1b5e20);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 600;
+      font-size: 1.3rem;
+    }
+    
+    .content-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .section-card {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      padding: 25px;
+      margin-bottom: 25px;
+      transition: all 0.3s ease;
+      border: 1px solid #e0e0e0;
+    }
+    
+    .section-card:hover {
+      border-color: var(--primary);
+      box-shadow: 0 8px 25px rgba(46, 125, 50, 0.15);
+    }
+    
+    .section-title {
+      color: var(--primary);
+      font-size: 1.4rem;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #e0e0e0;
+    }
+    
+    .compatibility-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+    
+    .compatibility-card {
+      text-align: center;
+      padding: 15px;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+    }
+    
+    .compatibility-card:hover {
+      transform: translateY(-3px);
+    }
+    
+    .compatibility-high {
+      background: #e8f5e9;
+      border: 1px solid var(--success);
+    }
+    
+    .compatibility-moderate {
+      background: #fff8e1;
+      border: 1px solid var(--warning);
+    }
+    
+    .compatibility-low {
+      background: #ffebee;
+      border: 1px solid var(--danger);
+    }
+    
+    .disability-icon {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+    
+    .disability-name {
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+    
+    .disability-level {
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+    
+    .roadmap-container {
+      position: relative;
+      padding-left: 30px;
+      margin: 30px 0;
+    }
+    
+    .roadmap-container::before {
+      content: '';
+      position: absolute;
+      left: 4px;
+      top: 20px;
+      bottom: 20px;
+      width: 4px;
+      background: var(--primary);
+      border-radius: 2px;
+    }
+    
+    .roadmap-step {
+      position: relative;
+      margin-bottom: 40px;
+    }
+    
+    .roadmap-step:last-child {
+      margin-bottom: 0;
+    }
+    
+    .step-marker {
+      position: absolute;
+      left: -24px;
+      top: 0;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 0.9rem;
+      border: 4px solid white;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    
+    .step-period {
+      font-weight: 600;
+      font-size: 1.3rem;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+    
+    .step-content {
+      line-height: 1.7;
+    }
+    
+    .daily-routine {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+      margin: 30px 0;
+    }
+    
+    .routine-block {
+      text-align: center;
+      padding: 20px;
+      border-radius: 12px;
+      background: white;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    
+    .routine-time {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+    
+    .routine-title {
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--secondary);
+    }
+    
+    .routine-desc {
+      font-size: 0.9rem;
+      color: #616161;
+    }
+    
+    .resource-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+      margin: 30px 0;
+    }
+    
+    .resource-card {
+      border-radius: 10px;
+      padding: 20px;
+      transition: all 0.3s ease;
+    }
+    
+    .resource-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    }
+    
+    .resource-card.free { background: #e8f5e9; border-left: 4px solid var(--success); }
+    .resource-card.paid { background: #e3f2fd; border-left: 4px solid var(--primary); }
+    .resource-card.community { background: #f3e5f5; border-left: 4px solid #7b1fa2; }
+    
+    .resource-title {
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--secondary);
+    }
+    
+    .scheme-card {
+      background: white;
+      border-radius: 15px;
+      padding: 25px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      border-left: 4px solid var(--success);
+    }
+    
+    .scheme-title {
+      color: var(--success);
+      font-weight: 600;
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+    }
+    
+    .challenge-card {
+      background: #fff8e1;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 15px;
+      border-left: 4px solid var(--warning);
+    }
+    
+    .alternate-card {
+      background: #e3f2fd;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 15px;
+      border-left: 4px solid var(--primary);
+    }
+    
+    .load-indicator {
+      height: 8px;
+      border-radius: 4px;
+      margin: 10px 0;
+      background: #e0e0e0;
+    }
+    
+    .load-fill {
+      height: 100%;
+      border-radius: 4px;
+      background: var(--primary);
+    }
+    
+    .accessibility-bar {
+      background: var(--dark);
+      color: white;
+      padding: 12px 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .accessibility-option {
+      margin: 0 8px;
+      cursor: pointer;
+      padding: 5px 12px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.1);
+      transition: all 0.2s;
+    }
+    
+    .accessibility-option:hover {
+      background: rgba(255,255,255,0.2);
+    }
+    
+    .breadcrumb-nav {
+      background: white;
+      border-radius: 10px;
+      padding: 15px 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    
+    .export-btn {
+      background: var(--accent);
+      color: white;
+      padding: 12px 25px;
+      font-weight: 600;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      margin-top: 20px;
+    }
+    
+    .export-btn:hover {
+      background: #d81b60;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(233, 30, 99, 0.3);
+    }
+    
+    .print-btn {
+      background: #3f51b5;
+      color: white;
+      padding: 10px 20px;
+      font-weight: 600;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+    
+    .print-btn:hover {
+      background: #283593;
+      transform: translateY(-1px);
+      box-shadow: 0 3px 8px rgba(63, 81, 181, 0.3);
+    }
+    
+    .disclaimer {
+      background: #fff8e1;
+      border-left: 4px solid #ff9800;
+      padding: 15px;
+      border-radius: 0 8px 8px 0;
+      margin: 25px 0;
+      font-size: 0.95rem;
+    }
+    
+    @media (max-width: 768px) {
+      .career-title {
+        font-size: 1.8rem;
+      }
+      
+      .roadmap-container::before {
+        left: 2px;
+      }
+      
+      .step-marker {
+        left: -22px;
+      }
+      
+      .daily-routine {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container content-container">
+    <div class="breadcrumb-nav">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0">
+          <li class="breadcrumb-item"><a href="../index.html#/dashboard" class="text-decoration-none"><i class="🏠 me-1"></i>Home</a></li>
+          <li class="breadcrumb-item"><a href="domain.html?domain=entertainment" class="text-decoration-none">Entertainment & Media</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Voice Actor / Dubbing Artist</li>
+        </ol>
+      </nav>
+    </div>
+    
+
+    
+    <div class="career-header text-center">
+      <div class="career-icon">
+        <i class="🎤"></i>
+      </div>
+      <h1 class="career-title">Voice Actor / Dubbing Artist</h1>
+      <p class="lead mb-3">Create compelling voice performances for animation, audiobooks, commercials, dubbing, video games, and other media. Work from home studios with flexible schedules and build a portfolio that showcases your vocal range and character abilities.</p>
+      
+      <div class="d-flex justify-content-center flex-wrap gap-3 mb-4">
+        <span class="career-type-badge type-freelance">
+          <i class="fas fa-user-clock me-1"></i> Freelance
+        </span>
+        <span class="career-type-badge type-side">
+          <i class="fas fa-layer-group me-1"></i> Side Income
+        </span>
+        <span class="income-range">
+          <i class="fas fa-rupee-sign me-1"></i> 25,000 - 75,000/month
+        </span>
+      </div>
+      
+      <div class="d-flex justify-content-center gap-3">
+        <button class="btn btn-light btn-lg px-4 py-2">
+          <i class="🧑‍🎓 me-2"></i>Beginner Friendly
+        </button>
+        <button class="btn btn-outline-light btn-lg px-4 py-2">
+          <i class="🎤 me-2"></i>Start Learning
+        </button>
+      </div>
+    </div>
+    
+    <div class="section-card">
+      <h2 class="section-title">Career Overview</h2>
+      <p class="lead">
+        Voice acting is a versatile career that allows you to work from home, set your own hours, and use your voice as your primary tool. This profession is particularly well-suited for persons with visual impairments, as it relies primarily on vocal skills rather than visual abilities.
+      </p>
+      
+      <div class="row mt-4">
+        <div class="col-md-6">
+          <h4><i class="fas fa-industry me-2 text-primary"></i> Industry</h4>
+          <p>Entertainment & Media - Animation, Audiobooks, Commercials, Dubbing, Video Games, E-learning, Corporate Videos</p>
+          
+          <h4 class="mt-4"><i class="fas fa-user-tag me-2 text-primary"></i> Role Types</h4>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item d-flex align-items-start">
+              <i class="✅ text-success mt-1 me-2"></i>
+              <span><strong>Primary Career:</strong> Full-time voice actor with consistent clients and income</span>
+            </li>
+            <li class="list-group-item d-flex align-items-start">
+              <i class="✅ text-warning mt-1 me-2"></i>
+              <span><strong>Side Career:</strong> Part-time voice work alongside another job</span>
+            </li>
+            <li class="list-group-item d-flex align-items-start">
+              <i class="✅ text-info mt-1 me-2"></i>
+              <span><strong>Freelance Gigs:</strong> Project-based work with varying income</span>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="col-md-6">
+          <h4><i class="fas fa-bullseye me-2 text-primary"></i> Career Clarity</h4>
+          <div class="mb-3">
+            <p><strong>Entry Difficulty:</strong> <span class="badge bg-warning">Moderate</span></p>
+            <p><strong>Competition Level:</strong> <span class="badge bg-danger">High</span> (but niche markets have less competition)</p>
+            <p><strong>Income Stability:</strong> <span class="badge bg-info">Variable</span> (builds with experience and client base)</p>
+          </div>
+          
+          <h4 class="mt-4"><i class="fas fa-lightbulb me-2 text-primary"></i> Key Strengths Required</h4>
+          <div class="d-flex flex-wrap gap-2">
+            <span class="badge bg-primary">Vocal Range</span>
+            <span class="badge bg-primary">Character Acting</span>
+            <span class="badge bg-primary">Consistent Delivery</span>
+            <span class="badge bg-primary">Technical Skills</span>
+            <span class="badge bg-primary">Persistence</span>
+            <span class="badge bg-primary">Self-Marketing</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="section-card">
+      <h2 class="section-title">Disability Compatibility</h2>
+      <p>
+        Voice acting is uniquely accessible for many disability types, particularly those that don't affect vocal abilities. The home-based nature of the work eliminates many physical barriers, and assistive technology can help overcome most technical challenges.
+      </p>
+      
+      <div class="compatibility-grid">
+        <div class="compatibility-card compatibility-high">
+          <div class="disability-icon">
+            <i class="fas fa-blind"></i>
+          </div>
+          <div class="disability-name">Blindness</div>
+          <div class="disability-level">Excellent Fit</div>
+          <p class="mt-2 small">Voice is primary tool; audio-only workflow possible</p>
+        </div>
+        
+        <div class="compatibility-card compatibility-high">
+          <div class="disability-icon">
+            <i class="fas fa-low-vision"></i>
+          </div>
+          <div class="disability-name">Low Vision</div>
+          <div class="disability-level">Excellent Fit</div>
+          <p class="mt-2 small">Screen readers and voice-controlled software available</p>
+        </div>
+        
+        <div class="compatibility-card compatibility-high">
+          <div class="disability-icon">
+            <i class="fas fa-brain"></i>
+          </div>
+          <div class="disability-name">Mental Illness</div>
+          <div class="disability-level">Good Fit</div>
+          <p class="mt-2 small">Flexible schedule accommodates treatment needs</p>
+        </div>
+        
+        <div class="compatibility-card compatibility-moderate">
+          <div class="disability-icon">
+            <i class="fas fa-wheelchair"></i>
+          </div>
+          <div class="disability-name">Locomotor</div>
+          <div class="disability-level">Moderate Fit</div>
+          <p class="mt-2 small">Home studio eliminates mobility barriers</p>
+        </div>
+        
+        <div class="compatibility-card compatibility-high">
+          <div class="disability-icon">
+            <i class="fas fa-leaf"></i>
+          </div>
+          <div class="disability-name">Autism</div>
+          <div class="disability-level">Excellent Fit</div>
+          <p class="mt-2 small">Structured work, focused environment, special interests</p>
+        </div>
+        
+        <div class="compatibility-card compatibility-low">
+          <div class="disability-icon">
+            <i class="fas fa-volume-mute"></i>
+          </div>
+          <div class="disability-name">Speech Impairment</div>
+          <div class="disability-level">Limited Fit</div>
+          <p class="mt-2 small">Depends on type/severity of speech difficulty</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="section-card">
+      <h2 class="section-title">Entry Path (Zero Experience)</h2>
+      <p>
+        Starting as a voice actor requires minimal initial investment but significant skill development. This path is designed for complete beginners with no prior experience or professional equipment.
+      </p>
+      
+      <div class="row mt-4">
+        <div class="col-md-6">
+          <h4><i class="🌱 me-2 text-primary"></i> Phase 1: Foundation (Months 1-2)</h4>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <strong>Equipment Setup:</strong> Start with smartphone recording apps, free audio software
+            </li>
+            <li class="list-group-item">
+              <strong>Vocal Assessment:</strong> Record yourself reading different types of text to identify strengths
+            </li>
+            <li class="list-group-item">
+              <strong>Basic Training:</strong> Complete free voice acting courses on Skill India Digital Hub
+            </li>
+          </ul>
+        </div>
+        
+        <div class="col-md-6">
+          <h4><i class="📈 me-2 text-primary"></i> Phase 2: Skill Building (Months 3-4)</h4>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <strong>Voice Demos:</strong> Create 3-5 sample recordings showcasing different character types
+            </li>
+            <li class="list-group-item">
+              <strong>Community Building:</strong> Join online forums for voice actors with disabilities
+            </li>
+            <li class="list-group-item">
+              <strong>Feedback Loop:</strong> Get constructive criticism from experienced voice actors
+            </li>
+          </ul>
+        </div>
+        
+        <div class="col-md-12 mt-4">
+          <h4><i class="fas fa-trophy me-2 text-primary"></i> Phase 3: First Clients (Months 5-6)</h4>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <strong>Platform Setup:</strong> Create profiles on beginner-friendly voice acting platforms
+            </li>
+            <li class="list-group-item">
+              <strong>Small Projects:</strong> Apply for micro-jobs and unpaid projects to build portfolio
+            </li>
+            <li class="list-group-item">
+              <strong>Mentorship:</strong> Connect with established voice actors who have disabilities
+            </li>
+            <li class="list-group-item">
+              <strong>Business Basics:</strong> Learn about contracts, rates, and client communication
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <div class="section-card">
+      <div class="roadmap-dropdown expanded" id="roadmap-dropdown">
+        <div class="roadmap-toggle" onclick="toggleRoadmap(this)">
+          <span>📋 6-Month Step-by-Step Roadmap</span>
+        </div>
+        <div class="roadmap-content expanded">
+          <div class="roadmap-content-inner">
+            <div class="roadmap-container">
+        <div class="roadmap-step">
+          <div class="step-marker">1</div>
+          <div class="step-period">Month 1-2: Foundation & Skill Assessment</div>
+          <div class="step-content">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <strong>Self Assessment:</strong> Identify your vocal range, character abilities, and natural strengths using disability-specific questionnaires
+              </li>
+              <li class="list-group-item">
+                <strong>Essential Tools:</strong> Set up basic home recording space with smartphone, free recording apps, and simple soundproofing (blankets, pillows)
+              </li>
+              <li class="list-group-item">
+                <strong>Accessibility Setup:</strong> Configure assistive technologies like screen readers, voice control software, and adaptive recording interfaces
+              </li>
+              <li class="list-group-item">
+                <strong>Free Training:</strong> Complete "Voice Acting Fundamentals" course on Skill India Digital Hub with accessibility support
+              </li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="roadmap-step">
+          <div class="step-marker">2</div>
+          <div class="step-period">Month 3-4: Skill Development & Community Building</div>
+          <div class="step-content">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <strong>Character Library:</strong> Develop 5-8 distinct character voices with different ages, genders, and personalities
+              </li>
+              <li class="list-group-item">
+                <strong>Portfolio Creation:</strong> Record demo reel sections (commercial, narration, character voices) using free editing software
+              </li>
+              <li class="list-group-item">
+                <strong>Community Connection:</strong> Join online forums like "Voice Acting for All Abilities" and "Blind Voice Actors Network"
+              </li>
+              <li class="list-group-item">
+                <strong>Disability Advocacy:</strong> Connect with organizations like National Association of Blind and Saksham Trust for mentorship
+              </li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="roadmap-step">
+          <div class="step-marker">3</div>
+          <div class="step-period">Month 5-6: Professional Development & Opportunities</div>
+          <div class="step-content">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <strong>Professional Demo:</strong> Create polished demo reel with accessible editing assistance if needed
+              </li>
+              <li class="list-group-item">
+                <strong>Market Research:</strong> Identify platforms and clients known for disability inclusion (Audible, BBC, Netflix Accessibility)
+              </li>
+              <li class="list-group-item">
+                <strong>First Projects:</strong> Apply for entry-level opportunities on platforms like Fiverr, Voices.com, and Indian Voice Acting Community
+              </li>
+              <li class="list-group-item">
+                <strong>Business Setup:</strong> Learn about invoicing, contracts, and home studio tax deductions for self-employed persons
+              </li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="roadmap-step">
+          <div class="step-marker">4</div>
+          <div class="step-period">Month 7-12: Career Growth & Specialization</div>
+          <div class="step-content">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <strong>Niche Development:</strong> Choose specialization (animation, audiobooks, commercials, e-learning) based on your strengths
+              </li>
+              <li class="list-group-item">
+                <strong>Professional Equipment:</strong> Apply for ADIP Scheme to upgrade to professional microphone and soundproofing
+              </li>
+              <li class="list-group-item">
+                <strong>Client Relationships:</strong> Build long-term relationships with 2-3 consistent clients for stable income
+              </li>
+              <li class="list-group-item">
+                <strong>Income Growth:</strong> Gradually increase rates from ₹500-1000/minute to ₹2000-5000/minute as portfolio and testimonials grow
+              </li>
+            </ul>
+          </div>
+        </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="section-card">
+      <h2 class="section-title">Daily 90-Minute Routine</h2>
+      <p>
+        Consistency is key in voice acting. This daily routine balances disability management, skill development, and career-building activities. Adjust timing and intensity based on your energy levels and needs.
+      </p>
+      
+      <div class="daily-routine">
+        <div class="routine-block">
+          <div class="routine-time">30 min</div>
+          <h4 class="routine-title">Disability Skill</h4>
+          <p class="routine-desc">
+            <strong>Voice Care & Management</strong><br>
+            Vocal warm-ups, breathing exercises, hydration routine, and rest periods. For blindness: screen reader practice and audio software navigation.
+          </p>
+        </div>
+        
+        <div class="routine-block">
+          <div class="routine-time">30 min</div>
+          <h4 class="routine-title">Compatible Skill</h4>
+          <p class="routine-desc">
+            <strong>Technical Development</strong><br>
+            Audio editing practice, script reading, character development, marketing skills, and platform management. Use assistive technology as needed.
+          </p>
+        </div>
+        
+        <div class="routine-block">
+          <div class="routine-time">30 min</div>
+          <h4 class="routine-title">Career Practice</h4>
+          <p class="routine-desc">
+            <strong>Professional Work</strong><br>
+            Client projects, audition recordings, portfolio updates, networking, and business development activities. Track progress and set daily goals.
+          </p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="section-card">
+      <h2 class="section-title">Tools & Assistive Technology</h2>
+      
+      <div class="row">
+        <div class="col-md-6">
+          <h4><i class="fas fa-microphone me-2 text-primary"></i> Essential Equipment</h4>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <strong>Basic Setup:</strong> Smartphone with voice recording app, USB microphone, headphones, quiet recording space
+            </li>
+            <li class="list-group-item">
+              <strong>Professional Setup:</strong> XLR microphone (Audio-Technica AT2020USB+), audio interface, pop filter, shock mount
+            </li>
+            <li class="list-group-item">
+              <strong>Soundproofing:</strong> Acoustic foam panels, reflection filters, sound blankets, bass traps
+            </li>
+            <li class="list-group-item">
+              <strong>Computer:</strong> Laptop/desktop with sufficient storage and processing power for audio editing
+            </li>
+          </ul>
+        </div>
+        
+        <div class="col-md-6">
+          <h4><i class="fas fa-wheelchair me-2 text-primary"></i> Disability-Specific Tools</h4>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <strong>For Blindness:</strong> Voice-controlled recording software, screen reader compatible DAWs, tactile marker strips on equipment
+            </li>
+            <li class="list-group-item">
+              <strong>For Low Vision:</strong> High contrast interfaces, large display monitors, voice feedback for editing software
+            </li>
+            <li class="list-group-item">
+              <strong>For Mental Health:</strong> Noise-cancelling headphones, calming studio lighting, scheduled breaks and rest periods
+            </li>
+            <li class="list-group-item">
+              <strong>For Physical Limitations:</strong> Adaptive microphone stands, foot pedals for recording control, ergonomic seating
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <div class="section-card">
+      <h2 class="section-title">Learning Resources</h2>
+      
+      <div class="resource-grid">
+        <div class="resource-card free">
+          <h5 class="resource-title"><i class="🎓 me-2"></i> Skill India Digital Hub</h5>
+          <p>Free voice acting courses with accessibility features, certification upon completion, and job placement assistance.</p>
+          <div class="mt-2">
+            <span class="badge bg-light text-dark border">Free</span>
+            <span class="badge bg-primary">Beginner</span>
+          </div>
+        </div>
+        
+        <div class="resource-card paid">
+          <h5 class="resource-title"><i class="fas fa-book me-2"></i> Indian Institute of Voice Arts</h5>
+          <p>Professional voice acting certification program with disability accommodations, industry connections, and portfolio development.</p>
+          <div class="mt-2">
+            <span class="badge bg-light text-dark border">₹15,000-25,000</span>
+            <span class="badge bg-success">Advanced</span>
+          </div>
+        </div>
+        
+        <div class="resource-card community">
+          <h5 class="resource-title"><i class="fas fa-users me-2"></i> Indian Voice Acting Community</h5>
+          <p>Facebook group and WhatsApp community for voice actors with regular feedback sessions, job postings, and mentorship opportunities.</p>
+          <div class="mt-2">
+            <span class="badge bg-light text-dark border">Free</span>
+            <span class="badge bg-info">All Levels</span>
+          </div>
+        </div>
+        
+        <div class="resource-card free">
+          <h5 class="resource-title"><i class="fas fa-podcast me-2"></i> National School of Drama Workshops</h5>
+          <p>Free voice and speech workshops specifically for persons with disabilities, focusing on character development and vocal technique.</p>
+          <div class="mt-2">
+            <span class="badge bg-light text-dark border">Free</span>
+            <span class="badge bg-warning">Intermediate</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="section-card">
+      <h2 class="section-title">Funding & Schemes (Maharashtra)</h2>
+      
+      <div class="scheme-card">
+        <h4 class="scheme-title"><i class="🎤 me-2"></i> ADIP Scheme - Media Equipment</h4>
+        <p class="mb-3">
+          The Artificial Limbs Manufacturing Corporation of India (ALIMCO) provides free or subsidized equipment for media and entertainment professionals with disabilities.
+        </p>
+        <div class="row">
+          <div class="col-6">
+            <h5>Benefits:</h5>
+            <ul class="list-unstyled">
+              <li><i class="✅ text-success me-2"></i> Professional microphones (₹8,000-15,000 value)</li>
+              <li><i class="✅ text-success me-2"></i> Audio interfaces and sound cards</li>
+              <li><i class="✅ text-success me-2"></i> Studio monitors and headphones</li>
+              <li><i class="✅ text-success me-2"></i> Soundproofing materials</li>
+            </ul>
+          </div>
+          <div class="col-6">
+            <h5>Eligibility:</h5>
+            <ul class="list-unstyled">
+              <li><i class="fas fa-user-tag text-info me-2"></i> 40%+ disability required</li>
+              <li><i class="fas fa-id-card text-info me-2"></i> Valid UDID card</li>
+              <li><i class="fas fa-money-bill-wave text-info me-2"></i> Annual income below ₹24,000</li>
+              <li><i class="fas fa-map-marker-alt text-info me-2"></i> Maharashtra resident</li>
+            </ul>
+          </div>
+        </div>
+        <div class="mt-3">
+          <a href="https://adip.disabilityaffairs.gov.in" target="_blank" class="btn btn-sm btn-primary">
+            <i class="ℹ️ me-1"></i> Application Portal
+          </a>
+        </div>
+      </div>
+      
+      <div class="scheme-card">
+        <h4 class="scheme-title"><i class="fas fa-file-contract me-2"></i> NDFDC Business Loans</h4>
+        <p class="mb-3">
+          National Disability Finance & Development Corporation provides low-interest loans for entrepreneurial ventures in media and entertainment.
+        </p>
+        <div class="row">
+          <div class="col-6">
+            <h5>Benefits:</h5>
+            <ul class="list-unstyled">
+              <li><i class="✅ text-success me-2"></i> Up to ₹25 lakhs loan amount</li>
+              <li><i class="✅ text-success me-2"></i> 5% interest rate</li>
+              <li><i class="✅ text-success me-2"></i> 7-year repayment period</li>
+              <li><i class="✅ text-success me-2"></i> Business plan assistance available</li>
+            </ul>
+          </div>
+          <div class="col-6">
+            <h5>Eligibility:</h5>
+            <ul class="list-unstyled">
+              <li><i class="fas fa-user-tag text-info me-2"></i> UDID card holder</li>
+              <li><i class="fas fa-file-alt text-info me-2"></i> Viable business plan</li>
+              <li><i class="🎓 text-info me-2"></i> Basic business literacy</li>
+              <li><i class="fas fa-handshake text-info me-2"></i> Guarantor or collateral (for larger loans)</li>
+            </ul>
+          </div>
+        </div>
+        <div class="mt-3">
+          <a href="https://www.ndfdc.nic.in" target="_blank" class="btn btn-sm btn-primary">
+            <i class="fas fa-file-contract me-1"></i> Apply Now
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="section-card">
+      <h2 class="section-title">Income & Workload Assessment</h2>
+      
+      <div class="row">
+        <div class="col-md-6">
+          <h4><i class="fas fa-rupee-sign me-2 text-primary"></i> Income Range</h4>
+          
+          <div class="mb-4">
+            <p><strong>Entry Level (0-1 year):</strong> ₹15,000-30,000/month</p>
+            <div class="load-indicator">
+              <div class="load-fill" style="width: 30%"></div>
+            </div>
+            <p class="text-muted small">1-2 small projects per week, building portfolio</p>
+          </div>
+          
+          <div class="mb-4">
+            <p><strong>Intermediate (1-3 years):</strong> ₹30,000-60,000/month</p>
+            <div class="load-indicator">
+              <div class="load-fill" style="width: 60%"></div>
+            </div>
+            <p class="text-muted small">Regular clients, diverse project types, consistent workflow</p>
+          </div>
+          
+          <div class="mb-4">
+            <p><strong>Advanced (3+ years):</strong> ₹60,000-1,20,000+/month</p>
+            <div class="load-indicator">
+              <div class="load-fill" style="width: 85%"></div>
+            </div>
+            <p class="text-muted small">Specialized niche, high-value clients, teaching opportunities</p>
+          </div>
+        </div>
+        
+        <div class="col-md-6">
+          <h4><i class="❤️ me-2 text-primary"></i> Workload Rating</h4>
+          
+          <div class="mb-4">
+            <p><strong>Mental Load:</strong> <span class="badge bg-warning">Moderate</span></p>
+            <p class="text-muted small">Requires concentration, emotional range, and consistent performance. Can be managed with proper scheduling and breaks.</p>
+          </div>
+          
+          <div class="mb-4">
+            <p><strong>Physical Load:</strong> <span class="badge bg-success">Low</span></p>
+            <p class="text-muted small">Primarily sedentary work with vocal strain being the main physical concern. Accessible home studio setup eliminates mobility requirements.</p>
+          </div>
+          
+          <div class="mb-4">
+            <p><strong>Emotional Load:</strong> <span class="badge bg-warning">Moderate</span></p>
+            <p class="text-muted small">Rejection sensitivity, audition stress, and client feedback can be challenging. Support systems and self-care are essential.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="section-card">
+      <h2 class="section-title">Realistic Challenges</h2>
+      
+      <div class="mb-4">
+        <h4><i class="fas fa-exclamation-triangle me-2 text-warning"></i> Common Obstacles</h4>
+        <div class="challenge-card">
+          <h5>Initial Investment Barriers</h5>
+          <p>Quality equipment and studio setup can be expensive initially. Many successful voice actors start with basic equipment and upgrade gradually using income from early projects.</p>
+        </div>
+        
+        <div class="challenge-card">
+          <h5>Market Competition</h5>
+          <p>The voice acting field is highly competitive with thousands of new entrants each year. Success requires specialization, consistent marketing, and building relationships rather than just talent.</p>
+        </div>
+        
+        <div class="challenge-card">
+          <h5>Income Instability</h5>
+          <p>Freelance voice acting income can fluctuate significantly month to month. Most successful voice actors maintain 3-5 consistent clients and have emergency savings equivalent to 3-6 months of expenses.</p>
+        </div>
+      </div>
+      
+      <div>
+        <h4><i class="fas fa-sync-alt me-2 text-primary"></i> Mitigation Strategies</h4>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <strong>Start Small:</strong> Begin with smartphone recording and free software, upgrade equipment gradually as income grows
+          </li>
+          <li class="list-group-item">
+            <strong>Diversify Income:</strong> Combine voice acting with related skills like audio editing, script writing, or teaching
+          </li>
+          <li class="list-group-item">
+            <strong>Build Safety Net:</strong> Save 20-30% of earnings for lean months, maintain part-time work during initial years
+          </li>
+          <li class="list-group-item">
+            <strong>Disability Community:</strong> Connect with other voice actors with disabilities for support, advice, and collaboration opportunities
+          </li>
+          <li class="list-group-item">
+            <strong>Professional Development:</strong> Continuously improve skills through courses, workshops, and feedback to stay competitive
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="section-card">
+      <h2 class="section-title">Alternate & Exit Paths</h2>
+      
+      <div class="row">
+        <div class="col-md-6">
+          <h4><i class="fas fa-route me-2 text-primary"></i> Alternate Career Paths</h4>
+          
+          <div class="alternate-card mb-3">
+            <h5><i class="fas fa-headphones me-2 text-info"></i> Audio Engineer</h5>
+            <p>Technical role focusing on sound quality, editing, and mixing rather than performance. Leverages audio skills with less emphasis on vocal abilities.</p>
+          </div>
+          
+          <div class="alternate-card mb-3">
+            <h5><i class=" ✒️ me-2 text-info"></i> Script Writer</h5>
+            <p>Creative writing for media projects including dialogue, narration scripts, and character development. Uses storytelling skills without vocal performance requirements.</p>
+          </div>
+          
+          <div class="alternate-card mb-3">
+            <h5><i class="🧑‍🎓 me-2 text-info"></i> Voice Coach</h5>
+            <p>Teaching voice acting techniques to others, especially beginners or persons with similar disabilities. Leverages experience and empathy.</p>
+          </div>
+        </div>
+        
+        <div class="col-md-6">
+          <h4><i class="fas fa-door-open me-2 text-primary"></i> Exit Strategies</h4>
+          
+          <div class="alternate-card mb-3">
+            <h5><i class="fas fa-business-time me-2 text-success"></i> Voice Studio Owner</h5>
+            <p>Transition from performer to studio owner/manager, hiring other voice actors and managing client relationships rather than performing yourself.</p>
+          </div>
+          
+          <div class="alternate-card mb-3">
+            <h5><i class="🏛️ me-2 text-success"></i> Government Media Role</h5>
+            <p>Apply for stable positions in government media departments, educational content creation, or public broadcasting with disability reservations and benefits.</p>
+          </div>
+          
+          <div class="alternate-card mb-3">
+            <h5><i class="fas fa-user-friends me-2 text-success"></i> Disability Advocate</h5>
+            <p>Use voice acting experience to advocate for accessibility in media, train organizations on inclusive content creation, and mentor other persons with disabilities.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="disclaimer">
+      <strong>Important Notice:</strong> This career roadmap is based on realistic pathways for persons with disabilities in India. Success requires consistent effort, skill development, and persistence. Income figures are estimates based on current market rates and may vary by location, experience, and niche specialization. Always consult with disability career counselors and financial advisors before making major career decisions.
+    </div>
+    
+    <div class="text-center my-4">
+      <button class="export-btn me-2" id="export-career-plan">
+        <i class="fas fa-file-export me-2"></i> Export Full Career Plan (PDF)
+      </button>
+      <button class="print-btn" id="print-career-plan">
+        <i class="fas fa-print me-2"></i> Print Career Roadmap
+      </button>
+    </div>
+    
+    <footer class="mt-5 py-4 border-top text-center text-muted">
+      <p class="mb-0">Universal Disability Career & Opportunity Engine (UDCOE)</p>
+      <p class="mb-0">© 2026 An initiative under the Rights of Persons with Disabilities Act, 2016</p>
+    </footer>
+  </div>
+  
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <script>
+    // Accessibility controls
+    document.addEventListener('DOMContentLoaded', function() {
+      // Text size controls
+      document.getElementById('text-size-increase').addEventListener('click', function() {
+        document.body.style.fontSize = '1.15rem';
+        localStorage.setItem('fontSize', '1.15rem');
+      });
+      
+      document.getElementById('text-size-decrease').addEventListener('click', function() {
+        document.body.style.fontSize = '1rem';
+        localStorage.setItem('fontSize', '1rem');
+      });
+      
+      // High contrast mode
+      document.getElementById('high-contrast').addEventListener('click', function() {
+        document.body.classList.toggle('high-contrast');
+        localStorage.setItem('highContrast', document.body.classList.contains('high-contrast'));
+      });
+      
+      // Voice navigation
+      document.getElementById('screen-reader').addEventListener('click', function() {
+        alert('Voice navigation mode activated. Use keyboard arrow keys to navigate through content sections.');
+      });
+      
+      // Export functionality
+      document.getElementById('export-career-plan').addEventListener('click', function() {
+        const careerContent = `
+          VOICE ACTOR / DUBBING ARTIST CAREER ROADMAP
+          ===========================================
+          
+          UNIVERSAL DISABILITY CAREER & OPPORTUNITY ENGINE (UDCOE)
+          
+          CAREER OVERVIEW
+          ---------------
+          Voice acting is a versatile career that allows you to work from home, set your own hours, and use your voice as your primary tool. This profession is particularly well-suited for persons with visual impairments, as it relies primarily on vocal skills rather than visual abilities.
+          
+          ROLE TYPES
+          ----------
+          • Primary Career: Full-time voice actor with consistent clients and income
+          • Side Career: Part-time voice work alongside another job  
+          • Freelance Gigs: Project-based work with varying income
+          
+          INCOME RANGE
+          ------------
+          Entry Level (0-1 year): ₹15,000-30,000/month
+          Intermediate (1-3 years): ₹30,000-60,000/month  
+          Advanced (3+ years): ₹60,000-1,20,000+/month
+          
+          DISABILITY COMPATIBILITY
+          ------------------------
+          • Blindness: Excellent Fit - Voice is primary tool; audio-only workflow possible
+          • Low Vision: Excellent Fit - Screen readers and voice-controlled software available
+          • Mental Illness: Good Fit - Flexible schedule accommodates treatment needs
+          • Locomotor: Moderate Fit - Home studio eliminates mobility barriers
+          • Autism: Excellent Fit - Structured work, focused environment, special interests
+          • Speech Impairment: Limited Fit - Depends on type/severity of speech difficulty
+          
+          6-MONTH ROADMAP
+          ---------------
+          Month 1-2: Foundation & Skill Assessment
+            • Self Assessment: Identify vocal range, character abilities, and natural strengths
+            • Essential Tools: Set up basic home recording space with smartphone and free apps
+            • Accessibility Setup: Configure assistive technologies for your disability
+            • Free Training: Complete "Voice Acting Fundamentals" on Skill India Digital Hub
+          
+          Month 3-4: Skill Development & Community Building
+            • Character Library: Develop 5-8 distinct character voices
+            • Portfolio Creation: Record demo reel sections using free editing software
+            • Community Connection: Join online forums for voice actors with disabilities
+            • Disability Advocacy: Connect with organizations like National Association of Blind
+          
+          Month 5-6: Professional Development & Opportunities
+            • Professional Demo: Create polished demo reel with accessible editing assistance
+            • Market Research: Identify platforms known for disability inclusion
+            • First Projects: Apply for entry-level opportunities on beginner-friendly platforms
+            • Business Setup: Learn about contracts, rates, and client communication
+          
+          Month 7-12: Career Growth & Specialization
+            • Niche Development: Choose specialization based on strengths
+            • Professional Equipment: Apply for ADIP Scheme to upgrade equipment
+            • Client Relationships: Build long-term relationships with 2-3 consistent clients
+            • Income Growth: Gradually increase rates as portfolio and testimonials grow
+          
+          DAILY 90-MINUTE ROUTINE
+          -----------------------
+          30 minutes: Disability Skill (Voice Care & Management)
+            • Vocal warm-ups, breathing exercises, hydration routine
+            • For blindness: screen reader practice and audio software navigation
+            
+          30 minutes: Compatible Skill (Technical Development)
+            • Audio editing practice, script reading, character development
+            • Use assistive technology as needed
+            
+          30 minutes: Career Practice (Professional Work)
+            • Client projects, audition recordings, portfolio updates
+            • Track progress and set daily goals
+          
+          ESSENTIAL TOOLS & ASSISTIVE TECHNOLOGY
+          --------------------------------------
+          Basic Setup: Smartphone with voice recording app, USB microphone, headphones
+          For Blindness: Voice-controlled recording software, tactile marker strips on equipment
+          For Low Vision: High contrast interfaces, large display monitors
+          For Mental Health: Noise-cancelling headphones, calming studio lighting
+          
+          GOVERNMENT SCHEMES (MAHARASHTRA)
+          --------------------------------
+          • ADIP Scheme - Media Equipment: Free professional microphones, audio interfaces, soundproofing materials (40%+ disability required)
+          • NDFDC Business Loans: Up to ₹25 lakhs at 5% interest for voice acting business (UDID holder required)
+          
+          LEARNING RESOURCES
+          -----------------
+          • Skill India Digital Hub: Free voice acting courses with accessibility features
+          • Indian Institute of Voice Arts: Professional certification program (₹15,000-25,000)
+          • Indian Voice Acting Community: Facebook group and WhatsApp community for networking
+          • National School of Drama Workshops: Free workshops for persons with disabilities
+          
+          REALISTIC CHALLENGES & SOLUTIONS
+          -------------------------------
+          Challenge: Initial Investment Barriers
+          Solution: Start with smartphone recording, upgrade equipment gradually using income from early projects
+          
+          Challenge: Market Competition
+          Solution: Specialize in niche markets, build relationships, focus on unique disability perspective
+          
+          Challenge: Income Instability
+          Solution: Save 20-30% of earnings for lean months, maintain part-time work during initial years
+          
+          ALTERNATE & EXIT PATHS
+          ----------------------
+          Alternate Paths: Audio Engineer, Script Writer, Voice Coach
+          Exit Strategies: Voice Studio Owner, Government Media Role, Disability Advocate
+          
+          This roadmap was generated by the Universal Disability Career & Opportunity Engine (UDCOE)
+          An initiative under the Rights of Persons with Disabilities Act, 2016
+        `;
+        
+        // Create downloadable file
+        const blob = new Blob([careerContent], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `UDCOE_Voice_Actor_Career_Roadmap_${new Date().toISOString().split('T')[0]}.txt`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        
+        alert('Your Voice Actor Career Roadmap has been downloaded successfully!');
+      });
+      
+      // Print functionality
+      document.getElementById('print-career-plan').addEventListener('click', function() {
+        window.print();
+      });
+      
+      // Toggle roadmap dropdown
+      window.toggleRoadmap = function(element) {
+        const dropdown = element.closest('.roadmap-dropdown');
+        dropdown.classList.toggle('expanded');
+        const content = dropdown.querySelector('.roadmap-content');
+        content.classList.toggle('expanded');
+      };
+      
+      // Load saved accessibility settings
+      if (localStorage.getItem('highContrast') === 'true') {
+        document.body.classList.add('high-contrast');
+      }
+      
+      const savedFontSize = localStorage.getItem('fontSize');
+      if (savedFontSize) {
+        document.body.style.fontSize = savedFontSize;
+      }
+    });
+  </script>
+</body>
+</html>

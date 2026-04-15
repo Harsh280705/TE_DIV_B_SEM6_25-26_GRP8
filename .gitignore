@@ -1,0 +1,306 @@
+# Career Discovery Platform - .gitignore
+# Generated for Tech Stack: JavaScript/HTML/CSS + Python/Flask + ML/TensorFlow
+
+################################################################################
+# 🔴 SENSITIVE DATA & SECRETS - CRITICAL
+################################################################################
+
+# Environment variables (NEVER commit these!)
+.env
+.env.local
+.env.*.local
+.env.production
+.env.production.local
+.env.development.local
+.env.test.local
+
+# Firebase configurations (use environment variables instead)
+src/config/firebase.js.local
+src/config/firebase.backup.js
+
+# API Keys and credentials
+secrets.json
+credentials.json
+apikeys.json
+.api-key
+.credentials
+
+# Private certificates and keys
+*.pem
+*.key
+*.pfx
+*.p12
+*.jks
+*.crt
+*.cer
+
+################################################################################
+# 📦 DEPENDENCIES - DO NOT COMMIT
+################################################################################
+
+# Node.js / npm
+node_modules/
+package-lock.json
+npm-debug.log
+npm-error.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.npm/
+.eslintcache
+
+# Python / pip / Virtual Environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+src/ml/venv/
+src/ml/env/
+.Python
+pip-log.txt
+pip-delete-this-directory.txt
+.venv
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+*.pyo
+*.pyd
+
+# Poetry
+poetry.lock
+
+# pipenv
+Pipfile.lock
+
+################################################################################
+# 🧪 TESTING & COVERAGE
+################################################################################
+
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.hypothesis/
+*.cover
+.nose*
+.pytest_cache/
+*.log
+
+################################################################################
+# 🎯 IDE & EDITOR CONFIGURATION - PERSONAL SETTINGS
+################################################################################
+
+# VS Code
+.vscode/
+*.code-workspace
+.vscode/settings.json
+.vscode/launch.json
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+.gradle/
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+*~
+.vim/
+
+# Emacs
+*~
+\#*\#
+.\#*
+
+# Eclipse
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# PyCharm
+.idea/
+*.pyc
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Visual Studio
+.vs/
+.vsix
+
+################################################################################
+# 🖥️ OPERATING SYSTEM FILES
+################################################################################
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Desktop.ini
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+*.dll
+*.exe
+
+# Linux
+.directory
+
+################################################################################
+# 📂 BUILD ARTIFACTS & TEMPORARY FILES
+################################################################################
+
+# Build outputs
+/dist
+/build
+out/
+.nuxt/
+.cache/
+.next/
+.turbo/
+.astro/
+
+# ML Model files (Large binary files - train locally)
+src/ml/*.h5
+src/ml/*.pkl
+src/ml/*.joblib
+src/ml/*.pt
+src/ml/*.pth
+src/ml/model/
+!src/ml/gesture_model.h5.DOWNLOAD.md
+
+# Training data
+src/ml/*.npy
+src/ml/*.npz
+src/ml/dataset/
+src/ml/raw_dataset/
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.bak
+*.backup
+*.log
+*.old
+*.orig
+
+# Database dumps
+*.sql
+*.sqlbak
+*.sqlite
+*.sqlite3
+*.db
+firebase_export.*
+
+################################################################################
+# ⚙️ PROJECT-SPECIFIC ITEMS
+################################################################################
+
+# Backup files (assessment pages have many .BACKUP files)
+*.BACKUP*
+*.THEME_BACKUP*
+*.backup
+*.bak
+*~
+
+# Local testing files
+test-data/
+test-results/
+local-config/
+
+# Downloaded models (if not in repo)
+gesture_model.h5
+*.tar.gz
+*.zip
+
+# Cache files
+.cache/
+*.cache
+.parcel-cache/
+
+# Logs
+logs/
+*.log
+lerna-debug.log*
+
+# Output files
+output/
+results/
+exports/
+
+################################################################################
+# MISCELLANEOUS
+################################################################################
+
+# Compiled Python files
+*.pyc
+*.pyo
+*.pyd
+
+# Distributed / packaging
+develop-eggs/
+
+# Virtual environments
+venv/
+ENV/
+env/
+
+# Misc
+.DS_Store
+Thumbs.db
+
+################################################################################
+# WHITELIST - Force include important files
+################################################################################
+
+# These files should NOT be ignored (use ! to whitelist)
+!.github/
+!.gitkeep
+!.env.example
+
+################################################################################
+# END OF GITIGNORE
+################################################################################
+
+# Last Updated: April 2026
+# Tech Stack: JavaScript + Python + ML (TensorFlow)
+# Reviewed for Security and Best Practices

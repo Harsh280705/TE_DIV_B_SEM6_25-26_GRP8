@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Your assessment results and personalized career recommendations"/>
+<title>Assessment Results - UDCOE</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+ 
+<style>
+:root {
+  --primary-green: #2E7D32;
+  --green-dark: #1B5E20;
+  --green-light: #4CAF50;
+  --green-accent: #66BB6A;
+  --dark-bg: #1a1a1a;
+  --card-bg: #242424;
+  --text-light: #FFFFFF;
+  --text-secondary: #CCCCCC;
+  --success: #4caf50;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+  color: var(--text-light);
+  padding-top: 20px;
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+/* WCAG 2.1: Focus Indicators */
+*:focus {
+  outline: 3px solid #FFD700 !important;
+  outline-offset: 2px !important;
+}
+
+/* WCAG 2.1: Skip Link */
+.skip-to-main {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: #000;
+  color: white;
+  padding: 8px 16px;
+  z-index: 100;
+  text-decoration: none;
+  border-radius: 0 0 4px 0;
+  font-weight: bold;
+}
+
+.skip-to-main:focus {
+  top: 0;
+}
+
+.content-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.breadcrumb-nav {
+  background: rgba(46, 125, 50, 0.08);
+  border: 1px solid rgba(46, 125, 50, 0.3);
+  border-radius: 10px;
+  padding: 15px 25px;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 15px rgba(46, 125, 50, 0.1);
+}
+
+.breadcrumb-nav .breadcrumb-item a {
+  color: var(--primary-green);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.breadcrumb-nav .breadcrumb-item a:hover {
+  color: var(--green-light);
+  text-shadow: 0 0 10px rgba(46, 125, 50, 0.5);
+}
+
+.breadcrumb-nav .breadcrumb-item.active {
+  color: var(--text-secondary);
+}
+
+.assessment-header {
+  background: linear-gradient(135deg, rgba(46, 125, 50, 0.15), rgba(27, 94, 32, 0.08));
+  border: 2px solid rgba(46, 125, 50, 0.4);
+  color: var(--text-light);
+  padding: 60px 40px;
+  border-radius: 20px;
+  margin-bottom: 40px;
+  box-shadow: 0 15px 40px rgba(46, 125, 50, 0.2);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.assessment-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-green), var(--green-dark));
+}
+
+.assessment-header h1 {
+  color: var(--green-light);
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 15px;
+  text-shadow: 0 2px 10px rgba(46, 125, 50, 0.4);
+  animation: slideInDown 0.6s ease-out;
+}
+
+.assessment-header .lead {
+  color: var(--text-secondary);
+  font-size: 1.3rem;
+  animation: slideInUp 0.6s ease-out 0.2s both;
+}
+
+@keyframes slideInDown {
+  from { transform: translateY(-30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideInUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 140, 0, 0.7); }
+  50% { box-shadow: 0 0 0 10px rgba(255, 140, 0, 0); }
+}
+
+/* CONFETTI/PARTY POPPER ANIMATION 🎉 */
+.confetti {
+  position: fixed;
+  width: 15px;
+  height: 15px;
+  background: var(--primary-green);
+  pointer-events: none;
+  z-index: 9999;
+  animation: confettiFall 4s ease-in-out forwards;
+}
+
+.confetti.square {
+  border-radius: 0;
+}
+
+.confetti.circle {
+  border-radius: 50%;
+}
+
+.confetti.triangle {
+  width: 0;
+  height: 0;
+  background: transparent;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 15px solid var(--primary-green);
+}
+
+.confetti.ribbon {
+  width: 6px;
+  height: 20px;
+  border-radius: 3px;
+}
+
+@keyframes confettiFall {
+  0% {
+    transform: translateY(-10vh) translateX(0) rotateZ(0deg) scale(1);
+    opacity: 1;
+  }
+  20% {
+    transform: translateY(10vh) translateX(10px) rotateZ(180deg) scale(1.2);
+    opacity: 1;
+  }
+  40% {
+    transform: translateY(30vh) translateX(-5px) rotateZ(360deg) scale(0.9);
+    opacity: 1;
+  }
+  60% {
+    transform: translateY(50vh) translateX(15px) rotateZ(540deg) scale(1.1);
+    opacity: 0.8;
+  }
+  80% {
+    transform: translateY(75vh) translateX(-10px) rotateZ(720deg) scale(0.8);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(110vh) translateX(0) rotateZ(900deg) scale(0.5);
+    opacity: 0;
+  }
+}
+
+/* DISABILITY CARDS WITH CIRCULAR PROGRESS */
+.disabilities-section {
+  margin-bottom: 50px;
+}
+
+.disabilities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.disability-card {
+  background: rgba(46, 125, 50, 0.08);
+  border: 2px solid rgba(46, 125, 50, 0.3);
+  border-radius: 15px;
+  padding: 30px;
+  text-align: center;
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+  box-shadow: 0 8px 25px rgba(46, 125, 50, 0.15);
+  animation: slideInUp 0.6s ease-out both;
+}
+
+.disability-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(46, 125, 50, 0.3);
+  border-color: rgba(46, 125, 50, 0.6);
+}
+
+.disability-card h5 {
+  color: var(--green-light);
+  font-weight: 700;
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+}
+
+/* Circular Progress Ring */
+.circular-progress {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto 20px;
+}
+
+.circular-progress svg {
+  transform: rotate(-90deg);
+  width: 100%;
+  height: 100%;
+}
+
+.circle-background {
+  fill: none;
+  stroke: rgba(255, 140, 0, 0.2);
+  stroke-width: 8;
+}
+
+.circle-progress {
+  fill: none;
+  stroke: url(#gradient);
+  stroke-width: 8;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1s ease-out;
+  animation: strokeAnimation 1.5s ease-out 0.3s both;
+}
+
+@keyframes strokeAnimation {
+  from {
+    stroke-dashoffset: 471;
+  }
+}
+
+.progress-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.progress-percentage {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--green-light);
+  display: block;
+  text-shadow: 0 2px 10px rgba(46, 125, 50, 0.4);
+}
+
+.progress-label {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-top: 5px;
+}
+
+.severity-badge {
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-top: 15px;
+}
+
+.severity-high {
+  background: rgba(244, 67, 54, 0.2);
+  color: #ff6b6b;
+  border: 1px solid rgba(244, 67, 54, 0.4);
+}
+
+.severity-moderate {
+  background: rgba(255, 193, 7, 0.2);
+  color: #ffb74d;
+  border: 1px solid rgba(255, 193, 7, 0.4);
+}
+
+.severity-low {
+  background: rgba(76, 175, 80, 0.2);
+  color: #81c784;
+  border: 1px solid rgba(76, 175, 80, 0.4);
+}
+
+/* FUNCTIONAL CONSIDERATIONS SECTION */
+.considerations-section {
+  background: linear-gradient(135deg, rgba(46, 125, 50, 0.1), rgba(27, 94, 32, 0.05));
+  border: 2px solid rgba(46, 125, 50, 0.3);
+  border-radius: 20px;
+  padding: 40px;
+  margin: 50px 0;
+  box-shadow: 0 8px 25px rgba(46, 125, 50, 0.15);
+  animation: slideInUp 0.7s ease-out 0.4s both;
+}
+
+.considerations-section h3 {
+  color: var(--green-light);
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 30px;
+  text-shadow: 0 2px 10px rgba(46, 125, 50, 0.3);
+}
+
+.consideration-category {
+  margin-bottom: 30px;
+}
+
+.consideration-category h4 {
+  color: var(--green-accent);
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+  padding-left: 15px;
+  border-left: 4px solid var(--primary-green);
+}
+
+.consideration-category ul {
+  list-style: none;
+  padding-left: 15px;
+}
+
+.consideration-category li {
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+  padding-left: 25px;
+  position: relative;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.consideration-category li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--primary-green);
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+/* CAREER PATH PREVIEW SECTION */
+.career-preview-section {
+  background: linear-gradient(135deg, rgba(46, 125, 50, 0.1), rgba(27, 94, 32, 0.05));
+  border: 2px solid rgba(46, 125, 50, 0.3);
+  border-radius: 20px;
+  padding: 40px;
+  margin: 50px 0;
+  box-shadow: 0 8px 25px rgba(46, 125, 50, 0.15);
+  text-align: justify;
+  animation: slideInUp 0.7s ease-out 0.5s both;
+}
+
+.career-preview-section h3 {
+  color: var(--green-light);
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 25px;
+  text-shadow: 0 2px 10px rgba(46, 125, 50, 0.3);
+}
+
+.career-preview-section p {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.8;
+  margin-bottom: 15px;
+}
+
+.career-preview-section strong {
+  color: var(--green-light);
+  font-weight: 700;
+}
+
+/* CTA BUTTON */
+.cta-button {
+  background: linear-gradient(135deg, var(--primary-green), var(--green-dark));
+  color: white;
+  padding: 18px 50px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(46, 125, 50, 0.4);
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-decoration: none;
+  display: inline-block;
+  animation: slideInUp 0.7s ease-out 0.6s both;
+  margin: 0 10px;
+}
+
+.cta-button:hover {
+  background: linear-gradient(135deg, var(--green-light), var(--primary-green));
+  box-shadow: 0 15px 40px rgba(46, 125, 50, 0.6);
+  transform: translateY(-3px);
+  color: white;
+}
+
+.cta-button:active {
+  transform: translateY(-1px);
+}
+
+.cta-button.secondary {
+  background: linear-gradient(135deg, var(--green-accent), var(--green-light));
+  box-shadow: 0 10px 30px rgba(102, 187, 106, 0.4);
+}
+
+.cta-button.secondary:hover {
+  background: linear-gradient(135deg, var(--green-light), var(--green-accent));
+  box-shadow: 0 15px 40px rgba(102, 187, 106, 0.6);
+}
+
+.text-center-cta {
+  display: flex;
+  justify-content: center;
+  margin: 50px 0;
+}
+
+.alert-info {
+  background: rgba(76, 175, 80, 0.1) !important;
+  border: 2px solid rgba(76, 175, 80, 0.3) !important;
+  border-radius: 10px !important;
+  color: var(--text-light) !important;
+  padding: 20px !important;
+}
+
+.alert-warning {
+  background: rgba(255, 193, 7, 0.1) !important;
+  border: 2px solid rgba(255, 193, 7, 0.3) !important;
+  border-radius: 10px !important;
+  color: var(--text-light) !important;
+  padding: 20px !important;
+}
+
+.alert-danger {
+  background: rgba(244, 67, 54, 0.1) !important;
+  border: 2px solid rgba(244, 67, 54, 0.3) !important;
+  border-radius: 10px !important;
+  color: var(--text-light) !important;
+  padding: 20px !important;
+}
+
+.spinner-border {
+  border-color: rgba(46, 125, 50, 0.3) !important;
+  border-right-color: var(--primary-green) !important;
+}
+
+#loading-message {
+  color: var(--text-secondary);
+}
+</style>
+</head>
+<body>
+<!-- WCAG 2.1: Skip to main content link -->
+<a href="#main-content" class="skip-to-main">Skip to main content</a>
+
+<!-- PDF Export Library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+<div class="container content-container">
+  <div class="breadcrumb-nav" role="navigation" aria-label="breadcrumb">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb mb-0">
+        <li class="breadcrumb-item"><a href="../index.html#/dashboard" class="text-decoration-none"><i class="🏠 me-1" aria-hidden="true"></i><span>Home</span></a></li>
+        <li class="breadcrumb-item"><a href="assessment.html" class="text-decoration-none">Assessment</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Results</li>
+      </ol>
+    </nav>
+  </div>
+
+  <main id="main-content" role="main">
+  <div class="assessment-header">
+    <h1 class="mb-3">🎉 Assessment Complete!</h1>
+    <p class="lead">Your personalized career pathway awaits...</p>
+  </div>
+
+  <div id="results-content">
+    <!-- Results will be loaded here -->
+    <div class="text-center my-5" id="loading-message">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading results...</span>
+      </div>
+      <p class="mt-3">Loading your assessment results...</p>
+    </div>
+  </div>
+  
+  <!-- Fallback button (hidden by default, shown if JS fails) -->
+  <div id="fallback-button" style="display: none;" class="text-center my-5">
+    <a href="career-domains.html" class="cta-button" style="text-decoration: none; display: inline-block;">
+      <i class="🛣️ me-2"></i>Explore Career Paths
+    </a>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/career-mapper.js"></script>
+<script>
+// ═══════════════════════════════════════════════════════════════════
+// PARTY POPPER / CONFETTI ANIMATION
+// ═══════════════════════════════════════════════════════════════════
+function createConfetti() {
+  const colors = ['#2E7D32', '#4CAF50', '#66BB6A', '#1B5E20', '#81c784', '#FFD700', '#FFA500', '#FF69B4'];
+  const shapes = ['square', 'circle', 'triangle', 'ribbon'];
+  const confettiCount = 150; // MORE CONFETTI! 🎊
+  
+  for (let i = 0; i < confettiCount; i++) {
+    const confetti = document.createElement('div');
+    const shape = shapes[Math.floor(Math.random() * shapes.length)];
+    confetti.className = `confetti ${shape}`;
+    
+    // Random horizontal position
+    confetti.style.left = Math.random() * 100 + '%';
+    
+    // Random color
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    if (shape === 'triangle') {
+      confetti.style.borderBottomColor = color;
+    } else {
+      confetti.style.backgroundColor = color;
+    }
+    
+    // Randomize animation
+    confetti.style.animationDelay = Math.random() * 0.8 + 's';
+    confetti.style.animationDuration = (3 + Math.random() * 2) + 's';
+    
+    // Random initial rotation
+    confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+    
+    document.body.appendChild(confetti);
+    
+    // Remove after animation completes
+    setTimeout(() => confetti.remove(), 5500);
+  }
+  
+  // Play a fun sound (optional - only if you have sound enabled)
+  try {
+    const audio = new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBTKH0fPTgjMGHm7A7+OZURE');
+    audio.volume = 0.3;
+    audio.play().catch(() => {}); // Ignore if sound fails
+  } catch(e) {}
+}
+
+// Wait for careerMapper to be available
+function waitForCareerMapper(maxAttempts = 50) {
+  return new Promise((resolve, reject) => {
+    let attempts = 0;
+    const checkInterval = setInterval(() => {
+      attempts++;
+      if (window.careerMapper) {
+        clearInterval(checkInterval);
+        resolve();
+      } else if (attempts >= maxAttempts) {
+        clearInterval(checkInterval);
+        reject(new Error('careerMapper failed to load'));
+      }
+    }, 100);
+  });
+}
+
+// Load assessment results from localStorage or URL params
+async function loadAssessmentResults() {
+  // Wait for careerMapper to load first
+  try {
+    await waitForCareerMapper();
+  } catch (error) {
+    console.error('Career mapper not available:', error);
+    document.getElementById('results-content').innerHTML = `
+      <div class="alert alert-danger">
+        <h4>Error Loading Career Mapper</h4>
+        <p>Please refresh the page. If the problem persists, contact support.</p>
+        <button onclick="location.reload()" class="btn btn-primary mt-2">Refresh Page</button>
+      </div>
+    `;
+    return;
+  }
+  
+  // Try to get from localStorage first
+  let results = localStorage.getItem('assessmentResults');
+  
+  if (results) {
+    try {
+      results = JSON.parse(results);
+    } catch (e) {
+      console.error('Error parsing results from localStorage:', e);
+      results = null;
+    }
+  }
+  
+  // If still no results, try URL params
+  if (!results || !results.assessmentResults || results.assessmentResults.length === 0) {
+    const urlParams = new URLSearchParams(window.location.search);
+    const resultsParam = urlParams.get('results');
+    if (resultsParam) {
+      try {
+        results = JSON.parse(decodeURIComponent(resultsParam));
+      } catch (e) {
+        console.error('Error parsing results from URL:', e);
+      }
+    }
+  }
+
+  // Check if we have valid results
+  if (!results || !results.assessmentResults || results.assessmentResults.length === 0) {
+    console.log('No results found. Checking localStorage...');
+    console.log('assessmentResults:', localStorage.getItem('assessmentResults'));
+    console.log('All localStorage keys:', Object.keys(localStorage));
+    
+    // Remove loading message
+    const loadingMsg = document.getElementById('loading-message');
+    if (loadingMsg) loadingMsg.remove();
+    
+    document.getElementById('results-content').innerHTML = `
+      <div class="alert alert-warning">
+        <h4>No Assessment Results Found</h4>
+        <p>Please complete the assessment first.</p>
+        <a href="assessment.html" class="btn btn-primary">Start Assessment</a>
+        <button onclick="console.log('assessmentResults:', localStorage.getItem('assessmentResults')); console.log('All keys:', Object.keys(localStorage));" class="btn btn-outline-secondary mt-2">Debug: Check localStorage</button>
+      </div>
+      <div class="text-center my-5">
+        <p class="text-muted">Or explore career options directly:</p>
+        <a href="career-domains.html" class="cta-button" style="text-decoration: none; display: inline-block;">
+          <i class="🛣️ me-2"></i>Explore Career Paths
+        </a>
+      </div>
+    `;
+    return;
+  }
+
+  console.log('Loading results:', results);
+  renderResults(results);
+  
+  // TRIGGER CONFETTI ANIMATION
+  setTimeout(() => {
+    createConfetti();
+  }, 300);
+}
+
+async function renderResults(results) {
+  console.log('Rendering results:', results);
+  const assessmentResults = results.assessmentResults || [];
+  const disabilities = assessmentResults.map(r => ({
+    name: r.name,
+    disabilityKey: r.disabilityKey || r.disKey,
+    severity: r.severity,
+    pct: r.pct || 0
+  }));
+
+  console.log('Processed disabilities:', disabilities);
+  
+  const hasDisabilities = disabilities.length > 0;
+
+  // Check if careerMapper is available
+  if (!window.careerMapper) {
+    console.error('careerMapper not loaded!');
+    document.getElementById('results-content').innerHTML = `
+      <div class="alert alert-danger">
+        <h4>Error Loading Career Mapper</h4>
+        <p>Please refresh the page or contact support.</p>
+        <button onclick="location.reload()" class="btn btn-primary mt-2">Refresh Page</button>
+      </div>
+    `;
+    return;
+  }
+
+  // Get functional considerations and career paths
+  let considerations = {};
+  let careerPaths = { totalCount: 0, domains: {} };
+  
+  try {
+    if (hasDisabilities) {
+      considerations = window.careerMapper.getFunctionalConsiderations(disabilities);
+      
+      // Get interests from pre-assessment data
+      const preAssessmentStr = localStorage.getItem('preAssessmentData');
+      const preAssessmentData = preAssessmentStr ? JSON.parse(preAssessmentStr) : null;
+      const interests = preAssessmentData ? (preAssessmentData.interests || []) : [];
+      
+      console.log('Interests from pre-assessment:', interests);
+      console.log('Disabilities for career path generation:', disabilities);
+      
+      // Generate career paths with interests
+      careerPaths = await window.careerMapper.generateCareerPaths(disabilities, interests);
+      console.log('Generated career paths:', careerPaths);
+      console.log('Domains in career paths:', Object.keys(careerPaths.domains || {}));
+      
+      // Save career paths to localStorage
+      localStorage.setItem('careerPaths', JSON.stringify(careerPaths));
+      localStorage.setItem('assessmentDisabilities', JSON.stringify(disabilities));
+    }
+  } catch (error) {
+    console.error('Error generating career paths:', error);
+  }
+
+  let html = '';
+  
+  if (hasDisabilities) {
+    // ======== CASE 1: DISABILITIES DETECTED ========
+    // MAIN CONTAINER WITH TWO COLUMNS
+    html += `<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 50px; align-items: start;">`;
+    
+    // LEFT COLUMN: DETECTED DISABILITIES
+    html += `
+      <div class="disabilities-section">
+        <h3 style="color: var(--green-light); font-size: 1.8rem; font-weight: 700; margin-bottom: 25px; text-shadow: 0 2px 10px rgba(46, 125, 50, 0.3);">
+          📋 Detected Disabilities
+        </h3>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+          ${disabilities.map((dis, idx) => `
+            <div class="disability-card" style="animation-delay: ${idx * 0.1}s; min-height: 300px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+              <h5 style="margin-bottom: 20px; color: var(--green-light);">${dis.name}</h5>
+              
+              <div class="circular-progress" style="width: 120px; height: 120px; margin: 0 auto 20px;">
+                <svg viewBox="0 0 160 160">
+                  <defs>
+                    <linearGradient id="gradient${idx}" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" style="stop-color:var(--primary-green);stop-opacity:1" />
+                      <stop offset="100%" style="stop-color:var(--green-dark);stop-opacity:1" />
+                    </linearGradient>
+                  </defs>
+                  <circle cx="80" cy="80" r="75" class="circle-background"></circle>
+                  <circle cx="80" cy="80" r="75" class="circle-progress" style="stroke-dasharray: 471; stroke-dashoffset: ${471 - (dis.pct / 100) * 471};"></circle>
+                </svg>
+                <div class="progress-text">
+                  <span class="progress-percentage" style="font-size: 1.5rem;">${dis.pct}%</span>
+                  <span class="progress-label">Match</span>
+                </div>
+              </div>
+              
+              <div class="severity-badge severity-${dis.severity.toLowerCase()}">
+                ${dis.severity} Severity
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `;
+
+    // RIGHT COLUMN: FUNCTIONAL CONSIDERATIONS
+    if (Object.keys(considerations).length > 0) {
+      html += `
+        <div style="animation: slideInUp 0.7s ease-out 0.4s both;">
+          <h3 style="color: var(--green-light); font-size: 1.8rem; font-weight: 700; margin-bottom: 25px; text-shadow: 0 2px 10px rgba(46, 125, 50, 0.3);">
+            🎯 Combined Functional Considerations
+          </h3>
+          ${Object.entries(considerations).map(([category, items], catIdx) => {
+            if (items.length === 0) return '';
+            return `
+              <div style="background: linear-gradient(135deg, rgba(46, 125, 50, 0.12), rgba(27, 94, 32, 0.06)); 
+                          border: 2px solid rgba(46, 125, 50, 0.4); 
+                          border-radius: 15px; 
+                          padding: 25px; 
+                          margin-bottom: 20px; 
+                          box-shadow: 0 8px 25px rgba(46, 125, 50, 0.15); 
+                          transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+                          animation: slideInUp 0.6s ease-out ${0.5 + catIdx * 0.1}s both;"
+                   onmouseover="this.style.boxShadow='0 15px 40px rgba(46, 125, 50, 0.35)'; this.style.borderColor='rgba(46, 125, 50, 0.7)'; this.style.transform='translateY(-5px)'; this.style.background='linear-gradient(135deg, rgba(46, 125, 50, 0.15), rgba(27, 94, 32, 0.08)';"
+                   onmouseout="this.style.boxShadow='0 8px 25px rgba(46, 125, 50, 0.15)'; this.style.borderColor='rgba(46, 125, 50, 0.4)'; this.style.transform='translateY(0)'; this.style.background='linear-gradient(135deg, rgba(46, 125, 50, 0.12), rgba(27, 94, 32, 0.06)';"> 
+                <h5 style="color: var(--green-light); font-weight: 700; font-size: 1.15rem; margin-bottom: 15px; padding-left: 15px; border-left: 4px solid var(--primary-green); margin-top: 0; text-shadow: 0 2px 5px rgba(46, 125, 50, 0.2);">
+                  ${category.replace(/([A-Z])/g, ' $1').trim()}
+                </h5>
+                <ul style="list-style: none; padding-left: 0; margin: 0;">
+                  ${items.map(item => `
+                    <li style="color: var(--text-light); margin-bottom: 12px; padding-left: 30px; position: relative; line-height: 1.6; font-size: 0.95rem;">
+                      <span style="position: absolute; left: 0; color: var(--green-light); font-weight: bold; font-size: 1.1rem;">✓</span>
+                      ${item}
+                    </li>
+                  `).join('')}
+                </ul>
+              </div>
+            `;
+          }).join('')}
+        </div>
+      `;
+    }
+    
+    html += `</div>`;
+
+    // FULL WIDTH CAREER PREVIEW SECTION
+    html += `
+      <div class="career-preview-section">
+        <h3 style="color: var(--green-light); font-size: 2rem; font-weight: 700; margin-bottom: 25px; text-shadow: 0 2px 10px rgba(46, 125, 50, 0.3);">
+          🚀 Career Path Preview
+        </h3>
+        ${careerPaths.totalCount > 0 ? `
+          <p style="color: var(--text-light); font-size: 1rem; line-height: 1.8; margin-bottom: 15px;">
+            We found <strong style="color: var(--green-light);">${careerPaths.totalCount} compatible career paths</strong> across <strong style="color: var(--green-light);">${Object.keys(careerPaths.domains).length} domains</strong> that align perfectly with your assessment results, functional abilities, and expressed interests.
+          </p>
+          <p style="color: var(--text-light); font-size: 1rem; line-height: 1.8; margin-bottom: 0;">
+            Each career pathway has been carefully selected to provide you with fulfilling opportunities that leverage your unique strengths and accommodate your specific needs. Click the buttons below to explore detailed career recommendations or download your comprehensive assessment report.
+          </p>
+        ` : `
+          <p style="color: var(--text-light); font-size: 1rem; line-height: 1.8; margin-bottom: 15px;">
+            Based on your assessment, we've identified your functional profile. Explore career opportunities across multiple domains with resources and guidance tailored to your needs.
+          </p>
+          <p style="color: var(--text-light); font-size: 1rem; line-height: 1.8; margin-bottom: 0;">
+            Click the buttons below to discover career paths or download your detailed assessment report.
+          </p>
+        `}
+      </div>
+    `;
+
+    // CTA BUTTONS - Export PDF + Explore Careers
+    html += `
+      <div class="text-center-cta" style="display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin: 50px 0;">
+        <button class="cta-button secondary" onclick="exportToPDF()">
+          <i class="fas fa-file-pdf me-2"></i>Download Assessment Report
+        </button>
+        <button class="cta-button" onclick="exploreCareerPaths()">
+          <i class="fas fa-arrow-right me-2"></i>Explore Career Paths
+        </button>
+      </div>
+    `;
+    
+  } else {
+    // ======== CASE 2: NO DISABILITIES DETECTED ========
+    html += `
+      <div style="max-width: 800px; margin: 0 auto;">
+        <div class="alert" style="background: linear-gradient(135deg, rgba(46, 125, 50, 0.15), rgba(27, 94, 32, 0.08)); border: 2px solid rgba(46, 125, 50, 0.4); border-radius: 20px; padding: 50px 40px; text-align: center; box-shadow: 0 15px 40px rgba(46, 125, 50, 0.2);">
+          <div style="font-size: 5rem; margin-bottom: 20px;">✅</div>
+          <h2 style="color: var(--green-light); font-size: 2.5rem; font-weight: 800; margin-bottom: 20px; text-shadow: 0 2px 10px rgba(46, 125, 50, 0.4);">No Disability Detected</h2>
+          <h3 style="color: var(--green-accent); font-size: 1.8rem; font-weight: 600; margin-bottom: 30px;">Assessment Complete!</h3>
+          <p style="color: var(--text-light); font-size: 1.15rem; line-height: 1.8; margin-bottom: 25px;">
+            Based on your responses to the comprehensive assessment, no specific disabilities were identified. This means you can explore a wide range of career opportunities without specific accessibility considerations.
+          </p>
+          <p style="color: var(--text-secondary); font-size: 1rem; line-height: 1.7; margin-bottom: 0;">
+            If you believe this assessment doesn't reflect your situation accurately, or if you have concerns about your abilities, we recommend consulting with a healthcare professional or taking the assessment again with more detailed responses.
+          </p>
+        </div>
+        
+        <div style="text-align: center; margin-top: 50px;">
+          <a href="assessment.html" class="cta-button" style="text-decoration: none;">
+            <i class="fas fa-redo me-2"></i>Retake Assessment
+          </a>
+        </div>
+      </div>
+    `;
+  }
+  
+  console.log('Generated HTML length:', html.length);
+  
+  // Remove loading message
+  const loadingMsg = document.getElementById('loading-message');
+  if (loadingMsg) loadingMsg.remove();
+  
+  // Update content
+  document.getElementById('results-content').innerHTML = html;
+  console.log('Results content updated');
+  
+  // Hide fallback button since we have content
+  const fallbackBtn = document.getElementById('fallback-button');
+  if (fallbackBtn) fallbackBtn.style.display = 'none';
+}
+
+async function exploreCareerPaths() {
+  console.log('exploreCareerPaths called');
+  
+  // Ensure career paths are saved to localStorage
+  let careerPathsStr = localStorage.getItem('careerPaths');
+  if (!careerPathsStr) {
+    console.log('No careerPaths in localStorage, regenerating...');
+    // Regenerate if missing
+    const assessmentResultsStr = localStorage.getItem('assessmentResults');
+    if (assessmentResultsStr) {
+      const results = JSON.parse(assessmentResultsStr);
+      const disabilities = results.assessmentResults.map(r => ({
+        name: r.name,
+        disabilityKey: r.disabilityKey || r.disKey,
+        severity: r.severity,
+        pct: r.pct || 0
+      }));
+      const preAssessmentStr = localStorage.getItem('preAssessmentData');
+      const preAssessmentData = preAssessmentStr ? JSON.parse(preAssessmentStr) : null;
+      const interests = preAssessmentData ? (preAssessmentData.interests || []) : [];
+      
+      console.log('Regenerating with:', { disabilities, interests });
+      
+      if (window.careerMapper) {
+        const careerPaths = await window.careerMapper.generateCareerPaths(disabilities, interests);
+        console.log('Regenerated career paths:', careerPaths);
+        localStorage.setItem('careerPaths', JSON.stringify(careerPaths));
+        careerPathsStr = JSON.stringify(careerPaths);
+      }
+    }
+  } else {
+    console.log('Found careerPaths in localStorage');
+    const careerPaths = JSON.parse(careerPathsStr);
+    console.log('Career paths domains:', Object.keys(careerPaths.domains || {}));
+  }
+  
+  // Navigate to career domains page
+  window.location.href = 'career-domains.html';
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// PDF EXPORT FUNCTION
+// ═══════════════════════════════════════════════════════════════════
+async function exportToPDF() {
+  try {
+    // Get assessment data
+    const assessmentResultsStr = localStorage.getItem('assessmentResults');
+    if (!assessmentResultsStr) {
+      alert('No assessment data found. Please take the assessment first.');
+      return;
+    }
+
+    const results = JSON.parse(assessmentResultsStr);
+    const disabilities = results.assessmentResults.map(r => ({
+      name: r.name,
+      disabilityKey: r.disabilityKey || r.disKey,
+      severity: r.severity,
+      pct: r.pct || 0
+    }));
+
+    // Get pre-assessment data
+    const preAssessmentStr = localStorage.getItem('preAssessmentData');
+    const preAssessmentData = preAssessmentStr ? JSON.parse(preAssessmentStr) : {};
+
+    // Get career paths
+    const careerPathsStr = localStorage.getItem('careerPaths');
+    const careerPaths = careerPathsStr ? JSON.parse(careerPathsStr) : { totalCount: 0, domains: {} };
+
+    // Initialize jsPDF
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    let yPosition = 20;
+    const pageHeight = doc.internal.pageSize.height;
+    const margin = 20;
+    const maxWidth = 170;
+
+    // Helper function to check if we need a new page
+    function checkPageBreak(neededSpace = 20) {
+      if (yPosition + neededSpace > pageHeight - margin) {
+        doc.addPage();
+        yPosition = 20;
+        return true;
+      }
+      return false;
+    }
+
+    // Title
+    doc.setFontSize(22);
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(46, 125, 50);
+    doc.text('Disability Assessment Report', 105, yPosition, { align: 'center' });
+    
+    yPosition += 10;
+    doc.setFontSize(12);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(100, 100, 100);
+    doc.text('Universal Disability Career & Opportunity Engine (UDCOE)', 105, yPosition, { align: 'center' });
+    
+    yPosition += 15;
+
+    // Assessment Date
+    doc.setFontSize(10);
+    doc.text(`Assessment Date: ${new Date().toLocaleDateString('en-IN', { year: 'numeric', month: 'long', day: 'numeric' })}`, margin, yPosition);
+    yPosition += 10;
+
+    // Personal Information Section
+    checkPageBreak(40);
+    doc.setFontSize(16);
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(46, 125, 50);
+    doc.text('Personal Information', margin, yPosition);
+    yPosition += 8;
+
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(50, 50, 50);
+    
+    if (preAssessmentData.fullName) {
+      doc.text(`Name: ${preAssessmentData.fullName}`, margin, yPosition);
+      yPosition += 6;
+    }
+    if (preAssessmentData.age) {
+      doc.text(`Age: ${preAssessmentData.age} years`, margin, yPosition);
+      yPosition += 6;
+    }
+    if (preAssessmentData.interests && preAssessmentData.interests.length > 0) {
+      doc.text(`Interests: ${preAssessmentData.interests.join(', ')}`, margin, yPosition);
+      yPosition += 6;
+    }
+    yPosition += 8;
+
+    // Disability Profile Section
+    if (disabilities.length > 0) {
+      checkPageBreak(50);
+      doc.setFontSize(16);
+      doc.setFont('helvetica', 'bold');
+      doc.setTextColor(46, 125, 50);
+      doc.text('Detected Disabilities', margin, yPosition);
+      yPosition += 10;
+
+      doc.setFontSize(10);
+      doc.setFont('helvetica', 'normal');
+      
+      disabilities.forEach((dis, index) => {
+        checkPageBreak(25);
+        
+        doc.setFont('helvetica', 'bold');
+        doc.setTextColor(76, 175, 80);
+        doc.text(`${index + 1}. ${dis.name}`, margin, yPosition);
+        yPosition += 6;
+        
+        doc.setFont('helvetica', 'normal');
+        doc.setTextColor(80, 80, 80);
+        doc.text(`   Severity: ${dis.severity} (${dis.pct}% match)`, margin, yPosition);
+        yPosition += 8;
+      });
+      
+      yPosition += 5;
+    }
+
+    // Functional Considerations
+    if (window.careerMapper && disabilities.length > 0) {
+      const considerations = window.careerMapper.getFunctionalConsiderations(disabilities);
+      
+      if (Object.keys(considerations).length > 0) {
+        checkPageBreak(40);
+        doc.setFontSize(16);
+        doc.setFont('helvetica', 'bold');
+        doc.setTextColor(46, 125, 50);
+        doc.text('Functional Considerations', margin, yPosition);
+        yPosition += 10;
+
+        doc.setFontSize(10);
+        
+        Object.entries(considerations).forEach(([category, items]) => {
+          if (items.length === 0) return;
+          
+          checkPageBreak(30);
+          doc.setFont('helvetica', 'bold');
+          doc.setTextColor(102, 187, 106);
+          doc.text(category.replace(/([A-Z])/g, ' $1').trim(), margin, yPosition);
+          yPosition += 6;
+          
+          doc.setFont('helvetica', 'normal');
+          doc.setTextColor(80, 80, 80);
+          
+          items.forEach(item => {
+            checkPageBreak(15);
+            const lines = doc.splitTextToSize(`• ${item}`, maxWidth - 10);
+            doc.text(lines, margin + 5, yPosition);
+            yPosition += lines.length * 5 + 2;
+          });
+          
+          yPosition += 5;
+        });
+      }
+    }
+
+    // Career Recommendations
+    if (careerPaths.totalCount > 0) {
+      checkPageBreak(40);
+      doc.setFontSize(16);
+      doc.setFont('helvetica', 'bold');
+      doc.setTextColor(46, 125, 50);
+      doc.text('Career Recommendations', margin, yPosition);
+      yPosition += 10;
+
+      doc.setFontSize(10);
+      doc.setFont('helvetica', 'normal');
+      doc.setTextColor(80, 80, 80);
+      doc.text(`Total Compatible Career Paths: ${careerPaths.totalCount}`, margin, yPosition);
+      yPosition += 6;
+      doc.text(`Career Domains: ${Object.keys(careerPaths.domains).length}`, margin, yPosition);
+      yPosition += 10;
+
+      // List domains
+      doc.setFont('helvetica', 'bold');
+      doc.setTextColor(102, 187, 106);
+      doc.text('Recommended Career Domains:', margin, yPosition);
+      yPosition += 6;
+
+      doc.setFont('helvetica', 'normal');
+      doc.setTextColor(80, 80, 80);
+      
+      Object.keys(careerPaths.domains).forEach(domainKey => {
+        checkPageBreak(10);
+        const domainInfo = window.careerMapper?.domains?.[domainKey];
+        const domainName = domainInfo ? domainInfo.name : domainKey;
+        const careerCount = careerPaths.domains[domainKey].length;
+        
+        doc.text(`• ${domainName} (${careerCount} career${careerCount > 1 ? 's' : ''})`, margin + 5, yPosition);
+        yPosition += 6;
+      });
+      
+      yPosition += 8;
+    }
+
+    // Government Schemes
+    if (window.careerMapper && disabilities.length > 0) {
+      const schemes = window.careerMapper.getRelevantSchemes(disabilities);
+      
+      if (schemes.length > 0) {
+        checkPageBreak(40);
+        doc.setFontSize(16);
+        doc.setFont('helvetica', 'bold');
+        doc.setTextColor(46, 125, 50);
+        doc.text('Applicable Government Schemes', margin, yPosition);
+        yPosition += 10;
+
+        doc.setFontSize(10);
+        
+        schemes.slice(0, 5).forEach((scheme, index) => {
+          checkPageBreak(35);
+          
+          doc.setFont('helvetica', 'bold');
+          doc.setTextColor(102, 187, 106);
+          doc.text(`${index + 1}. ${scheme.name}`, margin, yPosition);
+          yPosition += 6;
+          
+          doc.setFont('helvetica', 'normal');
+          doc.setTextColor(80, 80, 80);
+          
+          if (scheme.purpose || scheme.description) {
+            const purposeLines = doc.splitTextToSize(`Purpose: ${scheme.purpose || scheme.description}`, maxWidth - 10);
+            doc.text(purposeLines, margin + 5, yPosition);
+            yPosition += purposeLines.length * 5 + 2;
+          }
+          
+          if (scheme.benefit || scheme.amount) {
+            const benefitLines = doc.splitTextToSize(`Benefit: ${scheme.benefit || scheme.amount}`, maxWidth - 10);
+            doc.text(benefitLines, margin + 5, yPosition);
+            yPosition += benefitLines.length * 5 + 2;
+          }
+          
+          if (scheme.eligibility) {
+            const eligibilityLines = doc.splitTextToSize(`Eligibility: ${scheme.eligibility}`, maxWidth - 10);
+            doc.text(eligibilityLines, margin + 5, yPosition);
+            yPosition += eligibilityLines.length * 5 + 4;
+          }
+          
+          yPosition += 5;
+        });
+      }
+    }
+
+    // Footer
+    const totalPages = doc.internal.getNumberOfPages();
+    for (let i = 1; i <= totalPages; i++) {
+      doc.setPage(i);
+      doc.setFontSize(8);
+      doc.setTextColor(150, 150, 150);
+      doc.text(
+        `UDCOE Assessment Report - Page ${i} of ${totalPages}`,
+        105,
+        pageHeight - 10,
+        { align: 'center' }
+      );
+    }
+
+    // Save the PDF
+    const filename = `UDCOE_Assessment_${new Date().toISOString().split('T')[0]}.pdf`;
+    doc.save(filename);
+    
+    console.log('PDF exported successfully:', filename);
+    
+  } catch (error) {
+    console.error('Error exporting to PDF:', error);
+    alert('Error generating PDF. Please try again or contact support.');
+  }
+}
+
+// Load results on page load
+document.addEventListener('DOMContentLoaded', () => {
+  console.log('Page loaded, starting to load results...');
+  loadAssessmentResults().catch(error => {
+    console.error('Error loading assessment results:', error);
+    document.getElementById('results-content').innerHTML = `
+      <div class="alert alert-danger">
+        <h4>Error Loading Results</h4>
+        <p>${error.message}</p>
+        <button onclick="location.reload()" class="btn btn-primary mt-2">Refresh Page</button>
+        <a href="assessment.html" class="btn btn-outline-secondary mt-2">Retake Assessment</a>
+      </div>
+    `;
+  });
+});
+</script>
+
+  </main>
+
+  <footer class="mt-5 py-4" style="border-top: 1px solid var(--primary-green); text-align: center; color: var(--text-secondary);">
+    <p class="mb-0">Universal Disability Career & Opportunity Engine (UDCOE)</p>
+    <p class="mb-0">© 2026 An initiative under the Rights of Persons with Disabilities Act, 2016</p>
+  </footer>
+</div>
+</body>
+</html>
+</body>
+</html>
