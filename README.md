@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Career Discovery Platform 🎯
 
 An inclusive, web-based career assessment and discovery platform designed to help differently abled individuals identify career opportunities aligned with their strengths and capabilities.
