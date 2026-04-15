@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Career Discovery Platform 🎯
 
 An inclusive, web-based career assessment and discovery platform designed to help differently abled individuals identify career opportunities aligned with their strengths and capabilities.
@@ -393,8 +392,6 @@ python train_landmark_model.py  # Retrain model
 python gesture_server.py     # Start server with new model
 ```
 
----
-
 ## ⚙️ Configuration
 
 ### **Firebase Setup:**
@@ -416,14 +413,3 @@ Modify `src/ml/gesture_server.py`:
 - Global styles: `src/styles/main.css`
 - Bootstrap customizations: `assessment/css/bootstrap.min.css`
 - Theme colors can be adjusted in CSS variables
-
----
-
-## 🙏 Acknowledgments
-
-- FontAwesome for icons
-- Firebase for backend infrastructure
-- TensorFlow/MediaPipe for ML capabilities
-- Bootstrap for CSS framework
-- All contributors and testers
-
